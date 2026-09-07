@@ -1,0 +1,39 @@
+{
+  "name": "clone-player-contabilidade",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "An accessible accounting website concept with a reusable engineering playbook.",
+  "author": "Cielio Queiroz",
+  "engines": {
+    "node": ">=22 <25"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "format": "prettier --write src tests scripts *.ts *.mjs package.json tsconfig.json .github",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck",
+    "test": "node --experimental-strip-types --test tests/unit/*.test.ts",
+    "test:e2e": "playwright test",
+    "security:scan": "node scripts/check-secrets.mjs"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@playwright/test": "1.63.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.4",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3"
+  }
+}

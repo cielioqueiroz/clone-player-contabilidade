@@ -1,0 +1,12 @@
+.git
+.github
+.agents
+docs
+tests
+scripts
+README.md
+AGENTS.md
+playwright-report
+test-results
+work
+*.log
