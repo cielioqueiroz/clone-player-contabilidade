@@ -1,6 +1,6 @@
 # Delivery status
 
-Updated: 2026-09-08. Stage: visual refinement complete locally; production verification pending the next Vercel deployment.
+Updated: 2026-09-08. Stage: visual refinement published; production validation complete.
 
 ## Implemented
 
@@ -20,7 +20,7 @@ On 2026-09-08, lint, strict TypeScript, production build, four unit tests and si
 
 Commits `2748f4a`, `6419a0e` and `e637c19` were pushed to main under the verified user identity. Vercel Git integration reported the `e637c19` production deployment READY at https://clone-player-contabilidade.vercel.app. The public Playwright run then passed all fourteen desktop/mobile tests in 24 seconds, including direct route requests, navigation and reload, scenario interaction, scroll narrative, accessibility checks, sharing assets, noindex and security headers. GitHub About, topics and homepage are configured.
 
-The completed increment adds a development-only CSP exception for framework tooling, an optional `PLAYWRIGHT_BASE_URL` for deployed-site checks, explicit stylesheet assertions, the dependency-free headquarters scroll story, a source-aware secret scanner and its regression test. The scanner now inspects Git publication candidates, so an ignored local `.env.local` no longer creates a false release failure while a forcibly staged environment file is rejected. Visual review at 1280 × 720 and 390 × 844 found no clipped controls or horizontal overflow in the Home opening view. The current visual refinement remains local until the next production deployment is reported READY and its representative URLs are checked. Review dependency-update PRs individually; successful checks on main do not imply every automated dependency upgrade is compatible.
+The completed increment adds a development-only CSP exception for framework tooling, an optional `PLAYWRIGHT_BASE_URL` for deployed-site checks, explicit stylesheet assertions, the dependency-free headquarters scroll story, a source-aware secret scanner and its regression test. The scanner now inspects Git publication candidates, so an ignored local `.env.local` no longer creates a false release failure while a forcibly staged environment file is rejected. Visual review at 1280 × 720 and 390 × 844 found no clipped controls or horizontal overflow in the Home opening view. The visual refinement commit `3313780` was deployed to production as READY at https://clone-player-contabilidade.vercel.app. The public Playwright run then passed all sixteen desktop/mobile tests, including direct routes, reloads, header scroll state, pointer-responsive hero art, loaded headquarters photos, accessibility checks, overflow, sharing assets, noindex and security headers. Review dependency-update PRs individually; successful checks on main do not imply every automated dependency upgrade is compatible.
 
 Tooling limitation: ESLint 10.10.0 was tested but the React plugin bundled with Next's configuration failed on the removed `context.getFilename` API. ESLint is temporarily pinned to 9.39.5, which passes the checks and has zero known audit findings but is marked unsupported upstream. Upgrade the compatible plugin/configuration before removing this pin. Do not suppress the rules or use force upgrades to conceal incompatibility.
 
