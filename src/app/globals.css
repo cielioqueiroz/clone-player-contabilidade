@@ -703,8 +703,13 @@ li::marker {
   gap: 70px;
   align-items: center;
 }
+.office-copy {
+  padding-block: 28px;
+}
 .office-visual {
   max-width: 480px;
+  position: sticky;
+  top: 48px;
 }
 .office-photo {
   position: relative;
@@ -719,6 +724,39 @@ li::marker {
 }
 .office-photo img[data-visible="false"] {
   opacity: 0;
+}
+.office-steps {
+  list-style: none;
+  margin: 38px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+.office-steps li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  column-gap: 14px;
+  padding: 19px 0 17px;
+  margin: 0;
+  border-bottom: 1px solid var(--border);
+}
+.office-steps li::marker {
+  content: "";
+}
+.office-steps span {
+  grid-row: span 2;
+  color: var(--accent);
+  font: 0.7rem Consolas, monospace;
+  letter-spacing: 0.1em;
+  padding-top: 4px;
+}
+.office-steps strong {
+  font-weight: 500;
+}
+.office-steps p {
+  grid-column: 2;
+  margin: 4px 0 0;
+  font-size: 0.82rem;
 }
 .office-choices {
   display: flex;
@@ -955,6 +993,7 @@ li::marker {
     margin-inline: auto;
     width: 100%;
     margin-top: 25px;
+    position: static;
   }
 }
 @media (prefers-reduced-motion: reduce) {

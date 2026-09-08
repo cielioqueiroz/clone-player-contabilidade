@@ -1,17 +1,5 @@
-import { readdir, readFile } from "node:fs/promises";
-import { join, relative } from "node:path";
-
-const ignored = new Set([
-  "node_modules",
-  ".git",
-  ".next",
-  ".vercel",
-  "out",
-  "coverage",
-  "test-results",
-  "playwright-report",
-  "work",
-]);
+import { readFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 const patterns = [
   /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/,
   /\bgh[pousr]_[A-Za-z0-9]{30,}\b/,
@@ -20,29 +8,27 @@ const patterns = [
   /\bpostgres(?:ql)?:\/\/[^\s:]+:[^\s@]+@/,
 ];
 const findings = [];
-async function scan(dir) {
-  for (const item of await readdir(dir, { withFileTypes: true })) {
-    if (ignored.has(item.name) || item.isSymbolicLink()) continue;
-    const path = join(dir, item.name);
-    if (item.isDirectory()) {
-      await scan(path);
-      continue;
-    }
-    if (item.name.startsWith(".env") && item.name !== ".env.example") {
-      findings.push(relative(process.cwd(), path));
-      continue;
-    }
-    if (
-      !/\.(?:[cm]?[jt]sx?|json|ya?ml|md|css|txt)$/.test(item.name) &&
-      item.name !== ".env.example"
-    )
-      continue;
-    const body = await readFile(path, "utf8");
-    if (patterns.some((pattern) => pattern.test(body)))
-      findings.push(relative(process.cwd(), path));
+// Include tracked files even when forcibly added through an ignore rule.
+const files = execFileSync(
+  "git",
+  ["ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+  { encoding: "utf8", maxBuffer: 10 * 1024 * 1024 },
+).split("\0").filter(Boolean);
+for (const path of new Set(files)) {
+  if (/(^|\/)\.env(?!\.example$)|\.(pem|key|p12|pfx)$|(^|\/)\.vercel\//.test(path)) {
+    findings.push(path);
+    continue;
   }
+  if (!/\.(?:[cm]?[jt]sx?|json|ya?ml|md|css|txt)$/.test(path) && !path.endsWith(".env.example")) continue;
+  let body;
+  try {
+    body = await readFile(path, "utf8");
+  } catch (error) {
+    if (error.code === "ENOENT") continue; // Tracked deletion pending staging.
+    throw error;
+  }
+  if (patterns.some((pattern) => pattern.test(body))) findings.push(path);
 }
-await scan(process.cwd());
 if (findings.length) {
   console.error(
     `Potential secrets found in ${findings.length} file(s):\n${findings.join("\n")}`,
@@ -50,5 +36,5 @@ if (findings.length) {
   process.exitCode = 1;
 } else
   console.log(
-    "No known credential patterns or environment files found in the scoped source scan. Manual review remains required.",
+    "No known credential patterns or private environment files found in Git publication candidates. Ignored local files are excluded; manual review remains required.",
   );

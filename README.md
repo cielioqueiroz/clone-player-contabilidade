@@ -6,7 +6,7 @@
 
 A personal website concept exploring how editorial design, accessible interactions, and thoughtful engineering can make accounting easier to understand.
 
-[Explore the source](https://github.com/cielioqueiroz/clone-player-contabilidade) · [Project scope](AGENTS.md) · [Engineering skill](.agents/skills/player-project/SKILL.md) · [Delivery status](docs/STATUS.md)
+[Live concept](https://clone-player-contabilidade.vercel.app) · [Explore the source](https://github.com/cielioqueiroz/clone-player-contabilidade) · [Project scope](AGENTS.md) · [Engineering skill](.agents/skills/player-project/SKILL.md) · [Delivery status](docs/STATUS.md)
 
 </div>
 

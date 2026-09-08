@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
 
+const isDevelopment = process.env.NODE_ENV === "development";
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",
@@ -11,7 +12,7 @@ const csp = [
   "base-uri 'self'",
   "frame-ancestors 'none'",
   "form-action 'self'",
-  "upgrade-insecure-requests",
+  ...(isDevelopment ? [] : ["upgrade-insecure-requests"]),
 ].join("; ");
 
 const config: NextConfig = {

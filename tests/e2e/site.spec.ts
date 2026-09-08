@@ -96,6 +96,14 @@ test("headquarters photo control and reduced motion remain accessible", async ({
   ).toBe("none");
 });
 
+test("headquarters story follows a short scroll sequence", async ({ page }) => {
+  await page.goto("/");
+  await page.locator(".office-section").scrollIntoViewIfNeeded();
+  await expect(
+    page.getByRole("button", { name: "02 / As pessoas" }),
+  ).toHaveAttribute("aria-pressed", "true");
+});
+
 test("key pages meet automated accessibility checks and fit the viewport", async ({
   page,
 }) => {
@@ -132,6 +140,10 @@ test("sharing assets, noindex and security headers are present", async ({
   expect(og.headers()["content-type"]).toContain("image/png");
   expect((await request.get("/icon.svg")).status()).toBe(200);
   await page.goto("/");
+  await expect(page.locator(".office-photo")).toHaveCSS("position", "relative");
+  await expect(
+    page.locator('.office-photo img[data-visible="false"]'),
+  ).toHaveCSS("opacity", "0");
   await expect(
     page.locator('meta[property="og:image"]').first(),
   ).toHaveAttribute("content", /opengraph-image/);

@@ -1,14 +1,43 @@
 "use client";
-import { useState } from "react";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { site } from "@/content/catalog";
 
 export function OfficeStory() {
   const [showTeam, setShowTeam] = useState(false);
+  const storyRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let frame = 0;
+    const updateStory = () => {
+      frame = 0;
+      if (media.matches || !storyRef.current) return;
+      const bounds = storyRef.current.getBoundingClientRect();
+      const midway = window.innerHeight * 0.42;
+      setShowTeam(bounds.top < midway && bounds.bottom > midway);
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateStory);
+    };
+
+    updateStory();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    media.addEventListener("change", updateStory);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      media.removeEventListener("change", updateStory);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
-    <section className="section container office-section">
+    <section className="section container office-section" ref={storyRef}>
       <div className="office-story">
-        <div>
+        <div className="office-copy">
           <p className="eyebrow">03 / PESSOAS & ESTRUTURA</p>
           <h2>
             O espaço é só
@@ -22,6 +51,18 @@ export function OfficeStory() {
             Explore dois momentos da mesma sala, publicados pela Player: o
             ambiente e a equipe em reunião.
           </p>
+          <ol className="office-steps">
+            <li>
+              <span>01</span>
+              <strong>Preparar o contexto</strong>
+              <p>Antes da decisão, há espaço para organizar o que importa.</p>
+            </li>
+            <li>
+              <span>02</span>
+              <strong>Transformar conversa em direção</strong>
+              <p>Dados ganham sentido quando encontram pessoas e perguntas.</p>
+            </li>
+          </ol>
           <div className="office-address">
             <p className="eyebrow">SEDE ATUAL / PALMAS, TO</p>
             <p>{site.address}</p>
@@ -36,7 +77,7 @@ export function OfficeStory() {
           </div>
         </div>
         <div className="office-visual">
-          <div className="office-photo">
+          <div className="office-photo" data-stage={showTeam ? "team" : "space"}>
             <Image
               src="/images/player-meeting-room.jpg"
               alt="Sala de reunião da Player com mesa de pedra, cadeiras e tela, antes da reunião."
