@@ -7,7 +7,7 @@ export default function Contact() {
   return (
     <section className="container section">
       <PageIntro
-        label="CONTATO / CANAIS ORIGINAIS"
+        label="CANAIS ORIGINAIS"
         title="A conversa continua no lugar certo."
         description="Este projeto não recebe solicitações nem agenda atendimentos. Para conhecer os serviços reais, consulte os canais publicados pela empresa."
       />

@@ -5,7 +5,7 @@ export default function Accessibility() {
   return (
     <section className="container section prose">
       <PageIntro
-        label="INFORMAÇÕES / ACESSIBILIDADE"
+        label="ACESSIBILIDADE"
         title="Clareza também é poder navegar."
         description="O projeto busca uma experiência legível, responsiva e operável de diferentes maneiras."
       />

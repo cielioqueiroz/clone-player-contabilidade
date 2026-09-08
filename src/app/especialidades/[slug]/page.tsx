@@ -24,7 +24,7 @@ export default async function Specialty({ params }: Props) {
         ← Especialidades
       </Link>
       <PageIntro
-        label="ESPECIALIDADE / CONTEXTO IMPORTA"
+        label="ESPECIALIDADE"
         title={item.title}
         description={item.description}
       />

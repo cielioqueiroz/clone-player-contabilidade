@@ -5,11 +5,10 @@ import { companyWhatsAppUrl } from "@/lib/reference-links";
 export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
   return (
     <div className="service-grid">
-      {services.map((service, index) => (
+      {services.map((service) => (
         <article className="service-card" key={service.slug}>
-          <div className="card-top">
-            <span className="section-number">0{index + 1}</span>
-            <span aria-hidden="true">↗</span>
+          <div className="card-top" aria-hidden="true">
+            <span className="card-line" />
           </div>
           <h3>
             <Link href={`/solucoes/${service.slug}`}>{service.title}</Link>

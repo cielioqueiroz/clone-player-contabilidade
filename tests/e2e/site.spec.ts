@@ -82,13 +82,20 @@ test("headquarters photo control and reduced motion remain accessible", async ({
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await page.getByRole("button", { name: "02 / As pessoas" }).click();
+  await page.getByRole("button", { name: "As pessoas" }).click();
   await expect(
-    page.getByRole("button", { name: "02 / As pessoas" }),
+    page.getByRole("button", { name: "As pessoas" }),
   ).toHaveAttribute("aria-pressed", "true");
   await expect(
     page.getByRole("img", { name: /Equipe da Player reunida/ }),
   ).toBeVisible();
+  await expect
+    .poll(() =>
+      page
+        .getByRole("img", { name: /Equipe da Player reunida/ })
+        .evaluate((image) => (image as HTMLImageElement).naturalWidth),
+    )
+    .toBeGreaterThan(0);
   expect(
     await page
       .locator(".hero-copy")
@@ -100,8 +107,24 @@ test("headquarters story follows a short scroll sequence", async ({ page }) => {
   await page.goto("/");
   await page.locator(".office-section").scrollIntoViewIfNeeded();
   await expect(
-    page.getByRole("button", { name: "02 / As pessoas" }),
+    page.getByRole("button", { name: "As pessoas" }),
   ).toHaveAttribute("aria-pressed", "true");
+});
+
+test("header responds to scroll and the hero art responds to pointer movement", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const art = page.locator(".hero-art");
+  const bounds = await art.boundingBox();
+  expect(bounds).not.toBeNull();
+  if (!bounds) return;
+  await page.mouse.move(bounds.x + bounds.width * 0.82, bounds.y + bounds.height * 0.24);
+  expect(
+    await art.evaluate((element) => element.style.getPropertyValue("--art-x")),
+  ).not.toBe("0px");
+  await page.evaluate(() => window.scrollTo(0, 180));
+  await expect(page.locator(".site-header")).toHaveClass(/is-scrolled/);
 });
 
 test("key pages meet automated accessibility checks and fit the viewport", async ({

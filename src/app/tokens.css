@@ -7,4 +7,7 @@
   --muted: #b8bbaf;
   --accent: #f7b54a;
   --border: #3c4135;
+  --font-sans: "Aptos", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  --font-mono: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
 }

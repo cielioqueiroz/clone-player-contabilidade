@@ -6,7 +6,7 @@ export default function About() {
   return (
     <section className="container section">
       <PageIntro
-        label="SOBRE / UMA NOVA PERSPECTIVA"
+        label="SOBRE O CONCEITO"
         title="Precisão nos números. Intenção no design."
         description="Um estudo independente de como clareza, tecnologia e uma experiência bem construída podem aproximar pessoas de temas complexos."
       />

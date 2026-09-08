@@ -30,7 +30,7 @@ export default function OpenGraphImage() {
             player ↗
           </span>
           <span style={{ color: "#B8BBAF", fontSize: 18 }}>
-            DESIGN & TECNOLOGIA / CONCEITO
+            DESIGN & TECNOLOGIA
           </span>
         </div>
         <div

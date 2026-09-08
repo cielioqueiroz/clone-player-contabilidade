@@ -6,7 +6,7 @@ export default function Simulator() {
   return (
     <section className="container section">
       <PageIntro
-        label="03 / PONTO DE PARTIDA"
+        label="PONTO DE PARTIDA"
         title="Qual é o seu próximo movimento?"
         description="Uma experiência local para explorar possibilidades. Sem cadastro, coleta de dados ou cálculo de impostos."
       />

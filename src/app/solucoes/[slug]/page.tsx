@@ -26,7 +26,7 @@ export default async function ServicePage({ params }: Props) {
         ← Todas as soluções
       </Link>
       <PageIntro
-        label="SOLUÇÃO / VISÃO ESTRATÉGICA"
+        label="VISÃO ESTRATÉGICA"
         title={service.title}
         description={service.description}
       />

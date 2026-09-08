@@ -1,14 +1,22 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { navigation } from "@/content/catalog";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const menu = useRef<HTMLDetailsElement>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const updateHeader = () => setIsScrolled(window.scrollY > 24);
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    return () => window.removeEventListener("scroll", updateHeader);
+  }, []);
   return (
-    <header className="site-header">
+    <header className={`site-header${isScrolled ? " is-scrolled" : ""}`}>
       <div className="container header-inner">
         <Link
           className="wordmark"
@@ -19,7 +27,7 @@ export function SiteHeader() {
             ↗
           </span>{" "}
           player
-          <span className="wordmark-caption">CONTABILIDADE / CONCEITO</span>
+          <span className="wordmark-caption">CONCEITO INDEPENDENTE</span>
         </Link>
         <nav className="desktop-nav" aria-label="Navegação principal">
           {navigation.map((link) => (

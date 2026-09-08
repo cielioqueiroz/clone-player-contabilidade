@@ -5,7 +5,7 @@ export default function Privacy() {
   return (
     <section className="container section prose">
       <PageIntro
-        label="INFORMAÇÕES / PRIVACIDADE"
+        label="PRIVACIDADE"
         title="Uma experiência com poucos dados."
         description="Esta página descreve o funcionamento deste projeto demonstrativo, e não a política da Player Contabilidade."
       />

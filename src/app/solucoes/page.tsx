@@ -10,7 +10,7 @@ export default function Solutions() {
   return (
     <section className="container section">
       <PageIntro
-        label="01 / SOLUÇÕES"
+        label="SOLUÇÕES"
         title="Uma visão completa. Em cinco frentes."
         description="Explore os temas da contabilidade e encontre o que faz sentido para o seu momento. Os links de WhatsApp apontam para o canal publicado pela empresa original."
       />

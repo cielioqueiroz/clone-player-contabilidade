@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ServiceGrid } from "@/components/sections/service-grid";
 import { specialties } from "@/content/catalog";
 import { OfficeStory } from "@/components/sections/office-story";
+import { HeroArt } from "@/components/features/hero-art";
 
 export default function Home() {
   return (
@@ -31,26 +32,7 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className="hero-art" aria-hidden="true">
-          <div className="art-grid" />
-          <div className="orbit orbit-one" />
-          <div className="orbit orbit-two" />
-          <div className="sculpture">
-            <span className="sculpture-face face-one" />
-            <span className="sculpture-face face-two" />
-            <span className="sculpture-face face-three" />
-          </div>
-          <span className="art-coordinate top-coordinate">
-            PERSPECTIVA / 01
-          </span>
-          <span className="art-coordinate bottom-coordinate">
-            DADOS → CLAREZA → DIREÇÃO
-          </span>
-          <div className="art-note">
-            <span>O futuro pede</span>
-            <strong>um novo ângulo.</strong>
-          </div>
-        </div>
+        <HeroArt />
       </section>
       <div className="container discipline-strip">
         <span>Visão estratégica</span>
@@ -58,10 +40,10 @@ export default function Home() {
         <span>Tecnologia com propósito</span>
         <span>Relações de confiança</span>
       </div>
-      <section className="section container" id="solucoes">
+      <section className="section container reveal" id="solucoes">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">01 / SOLUÇÕES</p>
+            <p className="eyebrow">SOLUÇÕES</p>
             <h2>
               Complexidade lá fora.
               <br />
@@ -75,11 +57,11 @@ export default function Home() {
         </div>
         <ServiceGrid />
       </section>
-      <section className="specialties-section">
+      <section className="specialties-section reveal">
         <div className="container section">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">02 / ESPECIALIDADES</p>
+              <p className="eyebrow">ESPECIALIDADES</p>
               <h2>
                 Cada negócio tem
                 <br />
@@ -92,13 +74,12 @@ export default function Home() {
             </p>
           </div>
           <div className="specialty-grid">
-            {specialties.map((item, i) => (
+            {specialties.map((item) => (
               <Link
                 className="specialty-card"
                 key={item.slug}
                 href={`/especialidades/${item.slug}`}
               >
-                <span className="section-number">0{i + 1} / ESPECIALIDADE</span>
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
                 <span className="text-link">Explorar segmento ↗</span>
@@ -108,8 +89,8 @@ export default function Home() {
         </div>
       </section>
       <OfficeStory />
-      <section className="section container closing-section">
-        <p className="eyebrow">04 / PRÓXIMO PASSO</p>
+      <section className="section container closing-section reveal">
+        <p className="eyebrow">PRÓXIMO PASSO</p>
         <h2>
           Boas decisões começam
           <br />

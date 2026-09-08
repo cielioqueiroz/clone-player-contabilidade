@@ -7,7 +7,7 @@ export default function Specialties() {
   return (
     <section className="container section">
       <PageIntro
-        label="02 / ESPECIALIDADES"
+        label="ESPECIALIDADES"
         title="O detalhe do setor muda a perspectiva."
         description="Dois contextos de operação, com desafios que merecem um olhar específico."
       />

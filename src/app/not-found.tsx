@@ -2,7 +2,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <section className="container section error-page">
-      <p className="eyebrow">404 / NOVA DIREÇÃO</p>
+      <p className="eyebrow">PÁGINA NÃO ENCONTRADA</p>
       <h1>
         Este caminho
         <br />

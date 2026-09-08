@@ -38,7 +38,7 @@ export function OfficeStory() {
     <section className="section container office-section" ref={storyRef}>
       <div className="office-story">
         <div className="office-copy">
-          <p className="eyebrow">03 / PESSOAS & ESTRUTURA</p>
+          <p className="eyebrow">PESSOAS & ESTRUTURA</p>
           <h2>
             O espaço é só
             <br />o <em>começo.</em>
@@ -53,18 +53,16 @@ export function OfficeStory() {
           </p>
           <ol className="office-steps">
             <li>
-              <span>01</span>
               <strong>Preparar o contexto</strong>
               <p>Antes da decisão, há espaço para organizar o que importa.</p>
             </li>
             <li>
-              <span>02</span>
               <strong>Transformar conversa em direção</strong>
               <p>Dados ganham sentido quando encontram pessoas e perguntas.</p>
             </li>
           </ol>
           <div className="office-address">
-            <p className="eyebrow">SEDE ATUAL / PALMAS, TO</p>
+            <p className="eyebrow">PALMAS, TO</p>
             <p>{site.address}</p>
             <a
               className="text-link"
@@ -105,14 +103,14 @@ export function OfficeStory() {
               aria-pressed={!showTeam}
               onClick={() => setShowTeam(false)}
             >
-              01 / O espaço
+              O espaço
             </button>
             <button
               type="button"
               aria-pressed={showTeam}
               onClick={() => setShowTeam(true)}
             >
-              02 / As pessoas
+              As pessoas
             </button>
           </div>
           <a
