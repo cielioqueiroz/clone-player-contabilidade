@@ -1,6 +1,6 @@
 # Delivery status
 
-Updated: 2026-09-08. Stage: cinematic redesign validated locally; production publication pending.
+Updated: 2026-09-08. Stage: cinematic redesign published; production validation complete.
 
 ## Cinematic redesign
 
@@ -9,6 +9,8 @@ The home now uses an original metallic elliptical portal, a sticky scroll scene,
 Local acceptance on 2026-09-08: lint, strict TypeScript, production build, four unit tests and twenty desktop/mobile Playwright tests passed. The browser suite checks routes and refresh, scroll transforms, pause/resume, reduced motion, a JavaScript-disabled journey, automated accessibility, photographs, the local scenario, security headers and sharing assets. The credential scanner and dependency audit returned no findings. Manual screenshot review and a scroll recording cover the new composition; no horizontal overflow was detected at 360, 390, 768 or 1440 px across six home sections.
 
 The production build references 601,037 bytes of uncompressed home JavaScript, including a home-exclusive chunk of 135,453 bytes (51,809 bytes when locally gzip-compressed). The two local font files total 114,940 bytes. These are artifact sizes, not measured network transfers. A single local Chromium pass against the production server, with no CPU/network throttling, observed LCP 448–704 ms and CLS 0 across the four widths. INP and field Core Web Vitals have not been measured; these local results do not establish real-device performance. Review artifacts and the motion recording remain in ignored `work/cinematic/`.
+
+The cinematic redesign commit `8f398cf` was pushed to main under the verified user identity. Vercel deployment `dpl_6pjAYMhFR9232WQdNFZvCk4pEeiW` reported READY and assigned https://clone-player-contabilidade.vercel.app. All twenty Playwright tests then passed against that public domain in 36.3 seconds. GitHub Quality run `34257478749` completed successfully, including a clean dependency install, lint/types, unit tests, credential scan, audit, production build and browser suite on Linux. The prior `94f1497` release remains a rollback reference.
 
 ## Previous published increment
 
