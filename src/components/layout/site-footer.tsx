@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div className="footer-top">
           <div>
             <Link className="footer-brand" href="/">
-              player<span>↗</span>
+              player
             </Link>
             <p>Clareza para o próximo movimento.</p>
           </div>
@@ -25,7 +25,7 @@ export function SiteFooter() {
         <div className="footer-bottom">
           <p>Projeto independente de demonstração · Ciélio Queiroz</p>
           <a href={site.original} target="_blank" rel="noopener noreferrer">
-            Visitar o site oficial ↗
+            Visitar o site oficial
           </a>
         </div>
       </div>

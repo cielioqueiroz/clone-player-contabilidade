@@ -1,48 +1,66 @@
-"use client";
-
-import { type PointerEvent, useRef } from "react";
-
 export function HeroArt() {
-  const artRef = useRef<HTMLDivElement>(null);
-
-  function resetParallax() {
-    artRef.current?.style.setProperty("--art-x", "0px");
-    artRef.current?.style.setProperty("--art-y", "0px");
-  }
-
-  function moveParallax(event: PointerEvent<HTMLDivElement>) {
-    if (event.pointerType !== "mouse" || !artRef.current) return;
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-    artRef.current.style.setProperty("--art-x", `${(x * 18).toFixed(2)}px`);
-    artRef.current.style.setProperty("--art-y", `${(y * 18).toFixed(2)}px`);
-  }
-
   return (
-    <div
-      className="hero-art"
-      aria-hidden="true"
-      onPointerMove={moveParallax}
-      onPointerLeave={resetParallax}
-      ref={artRef}
-    >
-      <div className="art-grid" />
-      <div className="orbit orbit-one" />
-      <div className="orbit orbit-two" />
-      <div className="sculpture">
-        <span className="sculpture-face face-one" />
-        <span className="sculpture-face face-two" />
-        <span className="sculpture-face face-three" />
+    <div className="hero-art" aria-hidden="true">
+      <div className="portal-halo" />
+      <div className="portal-tilt">
+        <svg className="portal-sculpture" viewBox="0 0 800 800" fill="none">
+          <defs>
+            <linearGradient
+              id="portal-gold"
+              x1="90"
+              y1="80"
+              x2="650"
+              y2="690"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#fff2c2" />
+              <stop offset=".24" stopColor="#e99930" />
+              <stop offset=".48" stopColor="#6d300c" />
+              <stop offset=".69" stopColor="#ffbf56" />
+              <stop offset=".86" stopColor="#bc691e" />
+              <stop offset="1" stopColor="#ffe0a0" />
+            </linearGradient>
+            <linearGradient
+              id="portal-edge"
+              x1="200"
+              y1="100"
+              x2="610"
+              y2="620"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#fff4d0" />
+              <stop offset=".4" stopColor="#fda943" />
+              <stop offset=".7" stopColor="#8c4112" />
+              <stop offset="1" stopColor="#ffd795" />
+            </linearGradient>
+          </defs>
+          <g transform="rotate(-28 400 400)">
+            {Array.from({ length: 38 }, (_, index) => {
+              const offset = index * 2.4;
+              return (
+                <ellipse
+                  key={index}
+                  cx={344 + offset}
+                  cy={337 + offset * 0.78}
+                  rx={235 - index * 1.2}
+                  ry={284 - index * 1.4}
+                  stroke="url(#portal-gold)"
+                  strokeWidth="9"
+                />
+              );
+            })}
+            <ellipse
+              cx="432.8"
+              cy="406.26"
+              rx="190.6"
+              ry="232.2"
+              stroke="url(#portal-edge)"
+              strokeWidth="3"
+            />
+          </g>
+        </svg>
       </div>
-      <span className="art-coordinate top-coordinate">PERSPECTIVA</span>
-      <span className="art-coordinate bottom-coordinate">
-        DADOS → CLAREZA → DIREÇÃO
-      </span>
-      <div className="art-note">
-        <span>O futuro pede</span>
-        <strong>um novo ângulo.</strong>
-      </div>
+      <span className="portal-shadow" />
     </div>
   );
 }

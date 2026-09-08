@@ -38,7 +38,7 @@ export default function About() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Instagram da empresa ↗
+            Instagram da empresa
           </a>
           <a
             className="text-link block-link"
@@ -46,7 +46,7 @@ export default function About() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Site oficial ↗
+            Site oficial
           </a>
         </div>
       </div>

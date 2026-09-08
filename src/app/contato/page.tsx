@@ -24,7 +24,7 @@ export default function Contact() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Abrir WhatsApp da empresa ↗
+            Abrir WhatsApp da empresa
           </a>
         </article>
         <article className="detail-panel">
@@ -39,7 +39,7 @@ export default function Contact() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Instagram oficial ↗
+            Instagram oficial
           </a>
           <a
             className="text-link block-link"
@@ -47,7 +47,7 @@ export default function Contact() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Website original ↗
+            Website original
           </a>
         </article>
       </div>

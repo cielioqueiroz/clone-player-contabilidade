@@ -27,7 +27,7 @@ export default function OpenGraphImage() {
           }}
         >
           <span style={{ color: "#F7B54A", fontSize: 46, fontWeight: 700 }}>
-            player ↗
+            player
           </span>
           <span style={{ color: "#B8BBAF", fontSize: 18 }}>
             DESIGN & TECNOLOGIA

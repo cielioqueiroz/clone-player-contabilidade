@@ -23,9 +23,6 @@ export function SiteHeader() {
           href="/"
           aria-label="Player conceito — início"
         >
-          <span className="brand-symbol" aria-hidden="true">
-            ↗
-          </span>{" "}
           player
           <span className="wordmark-caption">CONCEITO INDEPENDENTE</span>
         </Link>
@@ -41,7 +38,7 @@ export function SiteHeader() {
           ))}
         </nav>
         <Link className="button button-small header-cta" href="/simulador">
-          Explore seu cenário <span aria-hidden="true">↗</span>
+          Explore seu cenário
         </Link>
         <details ref={menu} className="mobile-nav">
           <summary>

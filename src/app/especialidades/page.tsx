@@ -17,7 +17,7 @@ export default function Specialties() {
             <h2>{item.title}</h2>
             <p>{item.description}</p>
             <Link className="text-link" href={`/especialidades/${item.slug}`}>
-              Conhecer especialidade ↗
+              Conhecer especialidade
             </Link>
           </article>
         ))}

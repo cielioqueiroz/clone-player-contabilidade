@@ -23,7 +23,7 @@ export default async function ServicePage({ params }: Props) {
   return (
     <section className="container section">
       <Link className="text-link" href="/solucoes">
-        ← Todas as soluções
+        Todas as soluções
       </Link>
       <PageIntro
         label="VISÃO ESTRATÉGICA"
@@ -52,7 +52,7 @@ export default async function ServicePage({ params }: Props) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            WhatsApp da empresa original ↗
+            WhatsApp da empresa original
           </a>
           <p className="small-note">
             Você sairá deste projeto demonstrativo. Nenhuma mensagem é enviada

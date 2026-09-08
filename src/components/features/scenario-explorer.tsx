@@ -42,7 +42,7 @@ export function ScenarioExplorer() {
           ))}
         </fieldset>
         <button className="button" type="submit">
-          Ver próximo passo <span aria-hidden="true">↗</span>
+          Ver próximo passo
         </button>
       </form>
       <div
@@ -58,7 +58,7 @@ export function ScenarioExplorer() {
             <h2>{result.title}</h2>
             <p>{result.text}</p>
             <Link className="text-link" href={result.href}>
-              Conhecer a solução ↗
+              Conhecer a solução
             </Link>
             <button
               className="reset-button"
@@ -76,9 +76,6 @@ export function ScenarioExplorer() {
           </>
         ) : (
           <>
-            <span className="result-mark" aria-hidden="true">
-              ↗
-            </span>
             <h2>O próximo movimento começa com uma boa pergunta.</h2>
             <p>
               Este percurso é ilustrativo. Não calcula impostos, não emite

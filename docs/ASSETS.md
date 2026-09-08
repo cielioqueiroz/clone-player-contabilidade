@@ -27,7 +27,9 @@ Use Next Image responsive optimization, lazy loading, explicit aspect ratio and 
 
 ## Identity and sharing
 
-`src/app/icon.svg` is an original directional-arrow favicon for the concept, not a copied company trademark. `src/app/opengraph-image.tsx` generates a 1200 × 630 PNG with original typography, the concept label and owner credit. Keep OG/title/description consistent with the non-official nature of the project. Verify absolute OG URLs on the final domain and both image endpoints before release.
+`src/app/icon.svg` is an original elliptical portal favicon for the concept, not a copied company trademark. All decorative arrows were removed at the user's request. `src/app/opengraph-image.tsx` generates a 1200 × 630 PNG with original typography, the concept label and owner credit. Keep OG/title/description consistent with the non-official nature of the project. Verify absolute OG URLs on the final domain and both image endpoints before release.
+
+The metallic portal in `hero-art.tsx` and the sector geometry are original SVG/CSS compositions. Archivo Variable and Manrope Variable are self-hosted Latin WOFF2 files from Fontsource 5.3.0, licensed OFL-1.1; their notices remain in the dependency packages. No Instagram footage or third-party executable animation code is copied into the design.
 
 ## Conflicting public facts
 

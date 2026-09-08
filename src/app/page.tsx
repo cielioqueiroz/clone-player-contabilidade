@@ -1,108 +1,168 @@
 import Link from "next/link";
-import { ServiceGrid } from "@/components/sections/service-grid";
-import { specialties } from "@/content/catalog";
+import { services, specialties } from "@/content/catalog";
 import { OfficeStory } from "@/components/sections/office-story";
 import { HeroArt } from "@/components/features/hero-art";
+import { HomeMotion } from "@/components/features/home-motion";
 
 export default function Home() {
   return (
-    <>
-      <section className="hero container">
-        <div className="hero-copy">
-          <p className="eyebrow">
-            <span className="status-dot" /> CONTABILIDADE COM PERSPECTIVA
+    <HomeMotion>
+      <section
+        className="hero-sequence"
+        aria-label="Contabilidade com outra perspectiva"
+      >
+        <div className="hero-stage">
+          <div className="hero-grain" aria-hidden="true" />
+          <div className="container hero-composition">
+            <div className="hero-copy">
+              <p className="hero-kicker">
+                Contabilidade. Com outra perspectiva.
+              </p>
+              <h1>
+                <span className="hero-line">Seu negócio.</span>
+                <span className="hero-line">Em outra</span>
+                <span className="hero-line hero-line-accent">dimensão.</span>
+              </h1>
+              <div className="hero-caption">
+                <p>
+                  Mais visão para as suas decisões.
+                  <br />
+                  Mais espaço para o próximo passo.
+                </p>
+                <Link className="round-link" href="#solucoes">
+                  <span>Conheça as soluções</span>
+                </Link>
+              </div>
+            </div>
+            <HeroArt />
+            <div className="hero-foot">
+              <span>Clareza que move negócios.</span>
+              <a href="#manifesto">Uma nova perspectiva </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="perspective-section" id="manifesto">
+        <div className="container perspective-inner">
+          <p className="section-intro">
+            Quando a visão muda,
+            <br />o próximo passo aparece.
           </p>
-          <h1>
-            Seu próximo
-            <br />
-            movimento.
-            <br />
-            <em>Mais claro.</em>
-          </h1>
-          <p className="hero-description">
-            Transformar números em direção. Um novo olhar para a gestão, a
-            contabilidade e as possibilidades do seu negócio.
-          </p>
-          <div className="hero-actions">
-            <Link className="button" href="/solucoes">
-              Conheça as soluções <span aria-hidden="true">↗</span>
-            </Link>
-            <Link className="text-link" href="/simulador">
-              Explore seu cenário ↗
+          <h2 className="perspective-title">
+            <span>Menos ruído.</span>
+            <span className="perspective-second">
+              Mais{" "}
+              <span className="clarity-word">
+                clareza.
+                <svg
+                  viewBox="0 0 600 32"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path d="M4 22 Q290 0 596 15" />
+                </svg>
+              </span>
+            </span>
+          </h2>
+          <div className="perspective-bottom">
+            <p>
+              Contabilidade faz mais sentido quando ajuda a enxergar. Organizar
+              o presente. Entender o contexto. Abrir caminho para decisões
+              melhores.
+            </p>
+            <Link className="text-link" href="/sobre-nos">
+              Conheça o conceito{" "}
             </Link>
           </div>
         </div>
-        <HeroArt />
       </section>
-      <div className="container discipline-strip">
-        <span>Visão estratégica</span>
-        <span>Precisão contábil</span>
-        <span>Tecnologia com propósito</span>
-        <span>Relações de confiança</span>
-      </div>
-      <section className="section container reveal" id="solucoes">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">SOLUÇÕES</p>
+      <section className="solutions-editorial container section" id="solucoes">
+        <div className="editorial-heading">
+          <p>Soluções que se conectam.</p>
+          <h2>
+            Da rotina.
+            <br />À estratégia.
+          </h2>
+        </div>
+        <div className="service-ledger">
+          {services.map((service) => (
+            <Link
+              className="service-row"
+              href={`/solucoes/${service.slug}`}
+              key={service.slug}
+            >
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </Link>
+          ))}
+        </div>
+        <Link className="text-link all-solutions" href="/solucoes">
+          Ver todas as soluções{" "}
+        </Link>
+      </section>
+      <section className="sectors-section">
+        <div className="sector-ribbon" aria-hidden="true">
+          <span>O contexto muda tudo. O contexto muda tudo.</span>
+        </div>
+        <div className="container section">
+          <div className="editorial-heading">
+            <p>Um olhar para cada setor.</p>
             <h2>
-              Complexidade lá fora.
+              O detalhe
               <br />
-              <em>Clareza por aqui.</em>
+              faz a diferença.
             </h2>
           </div>
-          <p>
-            Da rotina financeira às decisões tributárias, explore cinco frentes
-            que se conectam ao seu negócio.
-          </p>
-        </div>
-        <ServiceGrid />
-      </section>
-      <section className="specialties-section reveal">
-        <div className="container section">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">ESPECIALIDADES</p>
-              <h2>
-                Cada negócio tem
-                <br />
-                seu próprio contexto.
-              </h2>
-            </div>
-            <p>
-              Conhecer o setor muda as perguntas. E perguntas melhores abrem
-              espaço para decisões mais conscientes.
-            </p>
-          </div>
-          <div className="specialty-grid">
-            {specialties.map((item) => (
+          <div className="sector-cards">
+            {specialties.map((item, index) => (
               <Link
-                className="specialty-card"
+                className={`sector-card sector-${index === 0 ? "pharma" : "build"}`}
                 key={item.slug}
                 href={`/especialidades/${item.slug}`}
               >
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-                <span className="text-link">Explorar segmento ↗</span>
+                <div className="sector-art" aria-hidden="true">
+                  {index === 0 ? (
+                    <div className="pharma-cross">
+                      <i />
+                      <i />
+                    </div>
+                  ) : (
+                    <div className="build-blocks">
+                      <i />
+                      <i />
+                      <i />
+                      <i />
+                      <i />
+                    </div>
+                  )}
+                </div>
+                <div className="sector-card-copy">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                  <span className="sector-link">Explorar segmento </span>
+                </div>
               </Link>
             ))}
           </div>
         </div>
       </section>
       <OfficeStory />
-      <section className="section container closing-section reveal">
-        <p className="eyebrow">PRÓXIMO PASSO</p>
-        <h2>
-          Boas decisões começam
-          <br />
-          com <em>outra perspectiva.</em>
-        </h2>
-        <Link className="button" href="/simulador">
-          Encontre um ponto de partida ↗
-        </Link>
-        <p className="small-note">
-          Percurso demonstrativo. Sem cadastro ou envio de dados.
-        </p>
+      <section className="next-chapter">
+        <div className="container next-chapter-inner">
+          <p>O próximo movimento começa com uma boa pergunta.</p>
+          <h2>
+            Vamos
+            <br />
+            <span>em frente.</span>
+          </h2>
+          <Link className="next-cta" href="/simulador">
+            <span>Explore seu cenário</span>
+          </Link>
+          <p className="next-note">
+            Uma experiência demonstrativa. Sem cadastro ou envio de dados.
+          </p>
+        </div>
       </section>
-    </>
+    </HomeMotion>
   );
 }

@@ -70,12 +70,15 @@ export function OfficeStory() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Ver a sede no Google Maps ↗
+              Ver a sede no Google Maps
             </a>
           </div>
         </div>
         <div className="office-visual">
-          <div className="office-photo" data-stage={showTeam ? "team" : "space"}>
+          <div
+            className="office-photo"
+            data-stage={showTeam ? "team" : "space"}
+          >
             <Image
               src="/images/player-meeting-room.jpg"
               alt="Sala de reunião da Player com mesa de pedra, cadeiras e tela, antes da reunião."
@@ -119,7 +122,7 @@ export function OfficeStory() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Fotos: Player Contabilidade · Publicação original ↗
+            Fotos: Player Contabilidade · Publicação original
           </a>
         </div>
       </div>

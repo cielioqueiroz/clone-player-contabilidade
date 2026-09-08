@@ -23,7 +23,7 @@ export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
           )}
           <div className="card-actions">
             <Link className="text-link" href={`/solucoes/${service.slug}`}>
-              Explorar solução <span aria-hidden="true">↗</span>
+              Explorar solução
             </Link>
             {detailed && (
               <a
@@ -32,7 +32,7 @@ export function ServiceGrid({ detailed = false }: { detailed?: boolean }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                WhatsApp da empresa original ↗
+                WhatsApp da empresa original
               </a>
             )}
           </div>

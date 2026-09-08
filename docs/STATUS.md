@@ -1,6 +1,16 @@
 # Delivery status
 
-Updated: 2026-09-08. Stage: visual refinement published; production validation complete.
+Updated: 2026-09-08. Stage: cinematic redesign validated locally; production publication pending.
+
+## Cinematic redesign
+
+The home now uses an original metallic elliptical portal, a sticky scroll scene, opposing text movement, geometric specialty illustrations with parallax, a headquarters image reveal and an oversized closing composition. GSAP 3.15.0 and ScrollTrigger coordinate motion on native scrolling. Users can pause it, reduced-motion preferences disable choreography, and server-rendered content and navigation remain usable without JavaScript. The header changes into a rounded floating frame on scroll. Archivo and Manrope are bundled locally as variable fonts throughout the website; decorative arrows and numbered section markers are removed. Shared typography, buttons, hover/focus treatment and internal-page styling were updated alongside the home. See decision 0004 for the implementation rationale and sources.
+
+Local acceptance on 2026-09-08: lint, strict TypeScript, production build, four unit tests and twenty desktop/mobile Playwright tests passed. The browser suite checks routes and refresh, scroll transforms, pause/resume, reduced motion, a JavaScript-disabled journey, automated accessibility, photographs, the local scenario, security headers and sharing assets. The credential scanner and dependency audit returned no findings. Manual screenshot review and a scroll recording cover the new composition; no horizontal overflow was detected at 360, 390, 768 or 1440 px across six home sections.
+
+The production build references 601,037 bytes of uncompressed home JavaScript, including a home-exclusive chunk of 135,453 bytes (51,809 bytes when locally gzip-compressed). The two local font files total 114,940 bytes. These are artifact sizes, not measured network transfers. A single local Chromium pass against the production server, with no CPU/network throttling, observed LCP 448–704 ms and CLS 0 across the four widths. INP and field Core Web Vitals have not been measured; these local results do not establish real-device performance. Review artifacts and the motion recording remain in ignored `work/cinematic/`.
+
+## Previous published increment
 
 ## Implemented
 

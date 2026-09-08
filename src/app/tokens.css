@@ -1,13 +1,13 @@
 :root {
   color-scheme: dark;
-  --background: #111310;
-  --surface: #1b1e18;
-  --surface-raised: #25291f;
+  --background: #171715;
+  --surface: #22221f;
+  --surface-raised: #30302a;
   --text: #f3f0e7;
   --muted: #b8bbaf;
-  --accent: #f7b54a;
+  --accent: #ffbc66;
   --border: #3c4135;
-  --font-sans: "Aptos", "Helvetica Neue", Arial, sans-serif;
-  --font-display: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  --font-sans: var(--font-manrope), sans-serif;
+  --font-display: var(--font-archivo), sans-serif;
   --font-mono: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
 }

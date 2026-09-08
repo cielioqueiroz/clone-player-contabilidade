@@ -16,11 +16,12 @@ A personal website concept exploring how editorial design, accessible interactio
 
 An independent portfolio study by **Ciélio Queiroz**, inspired by Player Contabilidade's public website and its current headquarters. This is not the company's official website, a booking service, or a tax advisory product.
 
-The first release establishes a complete navigation foundation and a reusable engineering playbook. Advanced scroll storytelling and optional 3D remain deliberate follow-up milestones.
+The concept combines a complete navigation foundation with a scroll-led editorial experience: an original metallic portal, coordinated typography, a floating header, and accessible motion controls.
 
 ## What's inside
 
-- Original graphite-and-amber design system, responsive layouts, and a geometric hero.
+- Original graphite-and-amber design system, Archivo and Manrope self-hosted variable fonts, and responsive editorial layouts.
+- GSAP/ScrollTrigger choreography for the portal, opposing text movement, image framing and geometric sector illustrations, with pause and reduced-motion support.
 - Five service categories with individual pages and explicit reference links to the original company's WhatsApp.
 - Two specialty pages, About, Contact, Privacy, Accessibility, and a real 404 page.
 - A local scenario explorer: no account, lead submission, personal-data storage, or tax calculations.
@@ -34,13 +35,14 @@ The first release establishes a complete navigation foundation and a reusable en
 | --- | --- |
 | Application | Next.js App Router + React |
 | Language | Strict TypeScript |
-| Design | CSS tokens, semantic components, reduced-motion-aware CSS |
+| Design | CSS tokens, Archivo + Manrope, original SVG and CSS artwork |
+| Motion | GSAP + ScrollTrigger, native scroll, pause and reduced-motion fallbacks |
 | Content | Typed files versioned in Git |
 | Testing | Node test runner, Playwright, axe-core |
 | Quality | ESLint, dependency audit, scoped secret scan |
 | Hosting | Vercel Hobby, for personal non-commercial use within its quotas |
 
-No runtime API keys, paid CMS, database, authentication service, analytics subscription, or purchased assets are required. Motion, GSAP, Lenis and R3F are evaluated only when a specific feature needs them. Free hosting remains subject to [Vercel's current Hobby terms and limits](https://vercel.com/docs/plans/hobby).
+No runtime API keys, paid CMS, database, authentication service, analytics subscription, or purchased assets are required. GSAP coordinates the scroll narrative; no scroll replacement or WebGL runtime is loaded. Free hosting remains subject to [Vercel's current Hobby terms and limits](https://vercel.com/docs/plans/hobby).
 
 ## Run locally
 

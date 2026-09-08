@@ -21,7 +21,7 @@ export default async function Specialty({ params }: Props) {
   return (
     <section className="container section">
       <Link className="text-link" href="/especialidades">
-        ← Especialidades
+        Especialidades
       </Link>
       <PageIntro
         label="ESPECIALIDADE"
@@ -40,7 +40,7 @@ export default async function Specialty({ params }: Props) {
           para entender como essas frentes se relacionam.
         </p>
         <Link className="button" href="/solucoes">
-          Explorar soluções ↗
+          Explorar soluções
         </Link>
       </div>
     </section>

@@ -111,20 +111,57 @@ test("headquarters story follows a short scroll sequence", async ({ page }) => {
   ).toHaveAttribute("aria-pressed", "true");
 });
 
-test("header responds to scroll and the hero art responds to pointer movement", async ({
+test("scroll transforms the hero and pause restores a static composition", async ({
   page,
 }) => {
   await page.goto("/");
-  const art = page.locator(".hero-art");
-  const bounds = await art.boundingBox();
-  expect(bounds).not.toBeNull();
-  if (!bounds) return;
-  await page.mouse.move(bounds.x + bounds.width * 0.82, bounds.y + bounds.height * 0.24);
-  expect(
-    await art.evaluate((element) => element.style.getPropertyValue("--art-x")),
-  ).not.toBe("0px");
-  await page.evaluate(() => window.scrollTo(0, 180));
+  await expect(page.locator(".cinematic-home")).toHaveAttribute(
+    "data-motion",
+    "ready",
+  );
+  const sculpture = page.locator(".portal-sculpture");
+  const before = await sculpture.evaluate(
+    (element) => getComputedStyle(element).transform,
+  );
+  await page.evaluate(() => window.scrollTo({ top: 450, behavior: "instant" }));
+  await expect
+    .poll(() =>
+      sculpture.evaluate((element) => getComputedStyle(element).transform),
+    )
+    .not.toBe(before);
   await expect(page.locator(".site-header")).toHaveClass(/is-scrolled/);
+  await page.getByRole("button", { name: "Pausar movimento" }).click();
+  await expect(
+    page.getByRole("button", { name: "Ativar movimento" }),
+  ).toHaveAttribute("aria-pressed", "true");
+  await expect(sculpture).toHaveCSS("transform", "none");
+  await page.getByRole("button", { name: "Ativar movimento" }).click();
+  await expect(page.locator(".cinematic-home")).toHaveAttribute(
+    "data-motion",
+    "ready",
+  );
+});
+
+test("home fits required widths and reduced motion removes the scroll scene", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  for (const width of [360, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+    ).toBe(true);
+  }
+  await expect(page.locator(".portal-sculpture")).toHaveCSS(
+    "transform",
+    "none",
+  );
+  await expect(page.locator(".hero-stage")).toHaveCSS("position", "relative");
+  await page.locator(".service-row").first().click();
+  await expect(page).toHaveURL(/solucoes\/bpo-financeiro$/);
 });
 
 test("key pages meet automated accessibility checks and fit the viewport", async ({
@@ -146,6 +183,23 @@ test("key pages meet automated accessibility checks and fit the viewport", async
     ).toBe(true);
   }
   expect(runtimeErrors).toEqual([]);
+});
+
+test("content and native navigation work without JavaScript", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto(process.env.PLAYWRIGHT_BASE_URL ?? "http://localhost:3000");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(
+    "Seu negócio.",
+  );
+  await expect(page.locator(".hero-stage")).toHaveCSS("position", "relative");
+  await expect(page.locator(".motion-toggle")).toBeHidden();
+  await expect(page.locator(".service-row")).toHaveCount(5);
+  await page.locator(".service-row").first().click();
+  await expect(page).toHaveURL(/solucoes\/bpo-financeiro$/);
+  await context.close();
 });
 
 test("sharing assets, noindex and security headers are present", async ({

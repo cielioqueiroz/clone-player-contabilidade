@@ -13,7 +13,7 @@ export default function NotFound() {
         partida.
       </p>
       <Link className="button" href="/">
-        Voltar ao início ↗
+        Voltar ao início
       </Link>
     </section>
   );
