@@ -1,6 +1,12 @@
 # Delivery status
 
-Updated: 2026-09-08. Stage: company content and internal-page motion published; production validation complete.
+Updated: 2026-09-08. Stage: company content published; official emblem parallax and favicon refinement validated locally.
+
+## Official emblem refinement
+
+The latest user request adds the official favicon and a decomposed company-symbol hero. The three clipped emblem regions follow the mark's curves and separate with individual GSAP translations and rotations; scrolling back, reduced motion and pause restore the assembled composition. The existing portal remains a subdued background layer. A larger company app-store source replaces an unsuitable enlarged header raster, while the favicon embeds the exact image declared by the original site's metadata. Provenance is recorded in `ASSETS.md`.
+
+The production build and lint/types passed. The full twenty-six-test suite passed before the final source-image replacement; eight relevant desktop/mobile tests then passed after that replacement, covering fragment displacement, pause/reset, reduced motion, width checks and the official favicon payload. Final screenshots at 1440 and 390 px show the assembled and separated emblem without horizontal overflow. Publication of this final visual refinement is pending.
 
 ## Company identity, content coverage and internal motion
 

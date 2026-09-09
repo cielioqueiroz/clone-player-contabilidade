@@ -63,6 +63,27 @@ export function HomeMotion({ children }: { children: ReactNode }) {
           )
           .to(select(".hero-copy"), { y: desktop ? -100 : -35 }, 0)
           .to(select(".portal-halo"), { scale: 1.6 }, 0);
+        const fragmentTravel = desktop ? 1 : 0.5;
+        const fragmentPositions = [
+          { x: 65, y: -125, rotation: -16 },
+          { x: 115, y: 10, rotation: 12 },
+          { x: -50, y: 135, rotation: -9 },
+        ];
+        select(".brand-fragment").forEach(
+          (fragment: HTMLElement, index: number) => {
+            const position = fragmentPositions[index];
+            story.to(
+              fragment,
+              {
+                x: position.x * fragmentTravel,
+                y: position.y * fragmentTravel,
+                rotation: position.rotation,
+                scale: 1.06,
+              },
+              0,
+            );
+          },
+        );
         gsap.fromTo(
           select(".perspective-title > span:first-child"),
           { xPercent: -9 },

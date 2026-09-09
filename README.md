@@ -29,7 +29,7 @@ The concept combines a complete navigation foundation with a scroll-led editoria
 - Two specialty pages, About, Contact, Privacy, Accessibility, and a real 404 page.
 - A local scenario explorer: no account, lead submission, personal-data storage, or tax calculations.
 - A headquarters photo story using two company Instagram images, credited to their original publication.
-- An original SVG favicon and a 1200 × 630 Open Graph sharing image.
+- Official company favicon, a three-layer emblem parallax scene, and a 1200 × 630 Open Graph sharing image.
 - TypeScript, automated accessibility and route checks, security headers, dependency checks, and a project skill for continued delivery.
 
 ## Stack and cost

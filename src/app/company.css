@@ -1,4 +1,39 @@
 /* Shared company chapters and progressively enhanced inner-page scenes. */
+.portal-tilt {
+  position: relative;
+}
+.portal-backdrop {
+  opacity: 0.2;
+}
+.brand-assembly {
+  position: absolute;
+  width: 54%;
+  aspect-ratio: 1;
+  top: 22%;
+  right: 22%;
+  filter: drop-shadow(0 35px 24px #0008);
+}
+.brand-fragment {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 50%;
+}
+.brand-fragment svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+@media (max-width: 800px) {
+  .brand-assembly {
+    width: 62%;
+    right: 22%;
+    top: 24%;
+  }
+  .hero-brand-art {
+    right: -25%;
+  }
+}
 .player-logo {
   display: block;
   width: 180px;

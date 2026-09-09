@@ -123,6 +123,11 @@ test("scroll transforms the hero and pause restores a static composition", async
   const before = await sculpture.evaluate(
     (element) => getComputedStyle(element).transform,
   );
+  const fragment = page.locator(".brand-fragment").first();
+  await expect(page.locator(".brand-fragment")).toHaveCount(3);
+  const fragmentBefore = await fragment.evaluate(
+    (el) => getComputedStyle(el).transform,
+  );
   await page.evaluate(() => window.scrollTo({ top: 450, behavior: "instant" }));
   await expect
     .poll(() =>
@@ -130,11 +135,15 @@ test("scroll transforms the hero and pause restores a static composition", async
     )
     .not.toBe(before);
   await expect(page.locator(".site-header")).toHaveClass(/is-scrolled/);
+  await expect
+    .poll(() => fragment.evaluate((el) => getComputedStyle(el).transform))
+    .not.toBe(fragmentBefore);
   await page.getByRole("button", { name: "Pausar movimento" }).click();
   await expect(
     page.getByRole("button", { name: "Ativar movimento" }),
   ).toHaveAttribute("aria-pressed", "true");
   await expect(sculpture).toHaveCSS("transform", "none");
+  await expect(fragment).toHaveCSS("transform", "none");
   await page.getByRole("button", { name: "Ativar movimento" }).click();
   await expect(page.locator(".cinematic-home")).toHaveAttribute(
     "data-motion",
@@ -320,7 +329,9 @@ test("sharing assets, noindex and security headers are present", async ({
   const og = await request.get("/opengraph-image");
   expect(og.status()).toBe(200);
   expect(og.headers()["content-type"]).toContain("image/png");
-  expect((await request.get("/icon.svg")).status()).toBe(200);
+  const favicon = await request.get("/icon.svg");
+  expect(favicon.status()).toBe(200);
+  expect(await favicon.text()).toContain("data:image/png;base64,");
   await page.goto("/");
   await expect(page.locator(".office-photo")).toHaveCSS("position", "relative");
   await expect(
