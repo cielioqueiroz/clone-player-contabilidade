@@ -1,12 +1,14 @@
 # Delivery status
 
-Updated: 2026-09-08. Stage: company content and internal-page motion validated locally; publication pending.
+Updated: 2026-09-08. Stage: company content and internal-page motion published; production validation complete.
 
 ## Company identity, content coverage and internal motion
 
 The approved home design is extended with shared GSAP scroll scenes across internal pages and additional home chapters. Official source PNG logos replace the demo wordmark in navigation, footer, the illustrative app panel and Open Graph. The implementation adds three advantages, three operational benefits, the app/store/portal journey, three linked company testimonials, institutional description and principles, six source-gallery photos, nine source-attributed seal blocks, qualified company figures, expanded service subjects and company contact/corporate details. `docs/SOURCE-PARITY.md` records coverage, verified destinations and deliberate differences. No new dependency, video mirror, lead collection or tracking is introduced.
 
 Executed local checks: lint and strict TypeScript, production build, four unit tests, the credential scanner, zero dependency-audit findings and twenty-six desktop/mobile Playwright tests passed (final browser run: 2.1 minutes). The suite now checks internal-page scroll transforms, pause/resume after navigation, reduced-motion cleanup, official logo loading, all institutional block counts and loaded gallery imagery, plus strict viewport width at 360/390/768/1440 px. Automated accessibility covers Home, Solutions, scenario, About and Contact. Review of twenty-two desktop/mobile section captures found no overflow or runtime errors. An initially detected mobile viewport expansion from the intro ornament was fixed by clipping only its decorative container; the pause button remains within the actual touch viewport. Review artifacts are ignored under `work/expanded/`. Field performance and manual assistive-technology certification are not claimed.
+
+Commit `b2932cd` was pushed to main and Vercel deployment `dpl_Ejcpbg7AfijRxLBtssyN3swDkiqT` reported READY at https://clone-player-contabilidade.vercel.app. All twenty-six tests then passed against the public domain in 1.0 minute, including desktop/mobile animation controls, source imagery, direct routes, no-JavaScript navigation, accessibility, responsive sizing and sharing assets. GitHub Quality run `34296599802` completed successfully. Read-only HEAD checks also confirmed HTTP 200 for all three source-hosted videos and the resolved Google Play destination. The prior `79b1df9` release remains a rollback reference.
 
 ## Prior release
 
