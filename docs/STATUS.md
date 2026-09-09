@@ -1,6 +1,14 @@
 # Delivery status
 
-Updated: 2026-09-09. Stage: company content, official emblem parallax and favicon published; production validation complete.
+Updated: 2026-09-09. Stage: smaller display typography and route scroll reset validated locally; release pending. Security controls reviewed with production evidence.
+
+## Typography, navigation and security review
+
+Display titles are reduced across the home, page introductions, company chapters, service/specialty headings and closing CTAs, including mobile breakpoints. Body copy remains unchanged. PageMotion resets native scroll immediately when the pathname changes, before the next route paints; hash destinations retain native anchor behavior. It does not depend on animation being enabled. The regression reproduced the old footer-to-Solutions bug at scrollY 5609 on desktop and 8323 on mobile, then passed after the central fix.
+
+Local lint/types, four unit tests, production build, credential scan and all twenty-eight desktop/mobile browser tests passed (1.8 minutes). The new journey checks footer, service card, header/mobile menu and home-logo navigation with motion enabled and reduced, plus a same-page anchor. Existing checks cover all direct routes, accessibility and widths 360/390/768/1440. Sixteen section captures at 1440 and 390 px reported no overflow/runtime errors; representative views were visually reviewed. Mobile home Solutions heading is now 36.8 px instead of the previous 51.2 px; internal page titles are 40 px instead of 51.2 px. Artifacts remain ignored under `work/typography/`.
+
+`SECURITY-REVIEW.md` records the user's twenty controls, current applicability, evidence and prioritized suggestions. The current audit found zero known dependency vulnerabilities; supplemental known-pattern inspection covered 12 locally reachable commits / 146 unique text blobs and 144 build artifacts without findings. Actual production checks verified HTTP-to-HTTPS 308, HSTS and other headers, sampled private-path 404s and no app cookies/storage after the scenario. The scanner's limited pattern coverage, absent continuous history scanning, CSP inline-script allowance and unverified account governance are explicitly documented. No backend, CAPTCHA, account setting or paid service was added.
 
 ## Official emblem refinement
 

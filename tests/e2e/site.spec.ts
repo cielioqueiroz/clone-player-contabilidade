@@ -77,6 +77,51 @@ test("local scenario validates, recommends and resets without a submission", asy
   expect(submissions).toEqual([]);
 });
 
+test("page links always open at the top while in-page anchors keep working", async ({
+  page,
+  isMobile,
+}) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: "Uma nova perspectiva" }).click();
+  await expect(page).toHaveURL(/#manifesto$/);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(300);
+
+  const footer = page.getByRole("navigation", { name: "Navegação do rodapé" });
+  await footer.getByRole("link", { name: "Soluções", exact: true }).click();
+  await expect(page).toHaveURL(/\/solucoes$/);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+  await page
+    .getByRole("link", { name: "Explorar solução", exact: true })
+    .last()
+    .click();
+  await expect(page).toHaveURL(/\/solucoes\/planejamento-tributario$/);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+
+  await page.evaluate(() => scrollTo({ top: 700, behavior: "instant" }));
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(200);
+  if (isMobile) await page.getByText("Menu +", { exact: true }).click();
+  await page
+    .getByRole("navigation", {
+      name: isMobile ? "Navegação móvel" : "Navegação principal",
+      exact: true,
+    })
+    .getByRole("link", { name: "Sobre", exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/sobre-nos$/);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await footer.getByRole("link", { name: "Contato", exact: true }).click();
+  await expect(page).toHaveURL(/\/contato$/);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+  await page.evaluate(() => scrollTo({ top: 700, behavior: "instant" }));
+  await page
+    .getByRole("link", { name: "Player conceito — início", exact: true })
+    .click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+});
+
 test("headquarters photo control and reduced motion remain accessible", async ({
   page,
 }) => {

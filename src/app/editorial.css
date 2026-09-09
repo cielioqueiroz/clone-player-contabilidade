@@ -135,8 +135,8 @@ em {
   padding-block: 35px;
 }
 .page-intro h1 {
-  font-size: clamp(3.2rem, 7vw, 7rem);
-  line-height: 0.99;
+  font-size: clamp(2.5rem, 5.4vw, 5rem);
+  line-height: 1.04;
   letter-spacing: -0.06em;
 }
 .service-card {
@@ -200,7 +200,7 @@ em {
   color: #dfddd4;
 }
 .hero-copy h1 {
-  font-size: clamp(5rem, 10.9vw, 10.8rem);
+  font-size: clamp(4.5rem, 9vw, 8.5rem);
   font-weight: 680;
   font-variation-settings: "wdth" 85;
   line-height: 0.88;
@@ -328,7 +328,7 @@ em {
   margin-bottom: 55px;
 }
 .perspective-title {
-  font-size: clamp(4rem, 9.6vw, 9.5rem);
+  font-size: clamp(3.4rem, 7.4vw, 7rem);
   line-height: 1;
   letter-spacing: -0.07em;
   font-weight: 570;
@@ -396,7 +396,7 @@ em {
   padding-top: 10px;
 }
 .editorial-heading h2 {
-  font-size: clamp(3rem, 6.4vw, 6.5rem);
+  font-size: clamp(2.5rem, 4.6vw, 4.5rem);
   line-height: 0.98;
   margin: 0;
   letter-spacing: -0.055em;
@@ -426,7 +426,7 @@ em {
   color: var(--accent);
 }
 .service-row h3 {
-  font-size: clamp(1.55rem, 2.65vw, 2.7rem);
+  font-size: clamp(1.5rem, 2.2vw, 2.2rem);
   margin: 0;
   letter-spacing: -0.035em;
   max-width: 490px;
@@ -499,7 +499,7 @@ em {
   padding: 30px 35px 38px;
 }
 .sector-card h3 {
-  font-size: clamp(1.8rem, 3.4vw, 3.5rem);
+  font-size: clamp(1.6rem, 2.6vw, 2.6rem);
   line-height: 1.05;
   margin-bottom: 20px;
 }
@@ -608,7 +608,7 @@ em {
   align-items: center;
 }
 .office-copy h2 {
-  font-size: clamp(3.4rem, 5.3vw, 5.5rem);
+  font-size: clamp(2.5rem, 4.2vw, 4.2rem);
   line-height: 1;
   margin-bottom: 35px;
 }
@@ -659,7 +659,7 @@ em {
   font-size: 0.95rem;
 }
 .next-chapter h2 {
-  font-size: clamp(5rem, 13vw, 13rem);
+  font-size: clamp(3.5rem, 9vw, 8.5rem);
   font-weight: 640;
   line-height: 0.89;
   letter-spacing: -0.065em;
@@ -718,7 +718,7 @@ em {
 
 @media (max-width: 1050px) {
   .hero-copy h1 {
-    font-size: 11.5vw;
+    font-size: 9.5vw;
   }
   .hero-caption {
     align-items: flex-start;
@@ -813,7 +813,7 @@ em {
     width: 100%;
   }
   .hero-copy h1 {
-    font-size: clamp(3.8rem, 13.5vw, 6.9rem);
+    font-size: clamp(3.2rem, 11.5vw, 5.5rem);
     margin-bottom: 24px;
     line-height: 0.94;
   }
@@ -859,7 +859,7 @@ em {
     font-size: 0.84rem;
   }
   .perspective-title {
-    font-size: clamp(2.8rem, 10.7vw, 5.3rem);
+    font-size: clamp(2.4rem, 8.8vw, 4.2rem);
     line-height: 1.12;
   }
   .clarity-word svg {
@@ -892,7 +892,7 @@ em {
     font-size: 0.87rem;
   }
   .editorial-heading h2 {
-    font-size: clamp(3.2rem, 9vw, 4.5rem);
+    font-size: clamp(2.3rem, 7vw, 3.5rem);
   }
   .service-row {
     grid-template-columns: 1fr;
@@ -938,7 +938,7 @@ em {
     padding: 25px;
   }
   .sector-card h3 {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
   }
   .sector-card p {
     font-size: 0.92rem;
@@ -951,7 +951,7 @@ em {
     gap: 20px;
   }
   .office-copy h2 {
-    font-size: 3.7rem;
+    font-size: clamp(2.4rem, 7vw, 3.2rem);
   }
   .office-visual {
     margin: 0;
@@ -963,7 +963,7 @@ em {
     padding-top: 55px;
   }
   .next-chapter h2 {
-    font-size: clamp(4rem, 16vw, 7rem);
+    font-size: clamp(3rem, 12vw, 5.5rem);
     margin: 40px 0;
   }
   .next-chapter h2 span {
