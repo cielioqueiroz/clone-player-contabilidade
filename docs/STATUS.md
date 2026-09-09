@@ -1,12 +1,14 @@
 # Delivery status
 
-Updated: 2026-09-08. Stage: company content published; official emblem parallax and favicon refinement validated locally.
+Updated: 2026-09-09. Stage: company content, official emblem parallax and favicon published; production validation complete.
 
 ## Official emblem refinement
 
 The latest user request adds the official favicon and a decomposed company-symbol hero. The three clipped emblem regions follow the mark's curves and separate with individual GSAP translations and rotations; scrolling back, reduced motion and pause restore the assembled composition. The existing portal remains a subdued background layer. A larger company app-store source replaces an unsuitable enlarged header raster, while the favicon embeds the exact image declared by the original site's metadata. Provenance is recorded in `ASSETS.md`.
 
-The production build and lint/types passed. The full twenty-six-test suite passed before the final source-image replacement; eight relevant desktop/mobile tests then passed after that replacement, covering fragment displacement, pause/reset, reduced motion, width checks and the official favicon payload. Final screenshots at 1440 and 390 px show the assembled and separated emblem without horizontal overflow. Publication of this final visual refinement is pending.
+The production build and lint/types passed. The full twenty-six-test suite passed before the final source-image replacement; eight relevant desktop/mobile tests then passed after that replacement, covering fragment displacement, pause/reset, reduced motion, width checks and the official favicon payload. Final screenshots at 1440 and 390 px show the assembled and separated emblem without horizontal overflow.
+
+Commit `af764f7` was pushed to main. Vercel deployment `dpl_AjP5kXWjh5s19RTy4hNY5RFmJn1V` reported READY and GitHub Quality run `34297736080` completed successfully. On 2026-09-09, all twenty-six browser tests passed against https://clone-player-contabilidade.vercel.app in 2.8 minutes. A recording of the actual published emblem separating and reassembling is saved in ignored `work/brand/logo-parallax.webm`. No field-performance or certification claim is implied by these checks.
 
 ## Company identity, content coverage and internal motion
 
