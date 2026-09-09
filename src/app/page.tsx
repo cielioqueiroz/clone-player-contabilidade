@@ -3,6 +3,13 @@ import { services, specialties } from "@/content/catalog";
 import { OfficeStory } from "@/components/sections/office-story";
 import { HeroArt } from "@/components/features/hero-art";
 import { HomeMotion } from "@/components/features/home-motion";
+import {
+  Advantages,
+  OperationalBenefits,
+  AppShowcase,
+  Testimonials,
+} from "@/components/sections/company-sections";
+import { company } from "@/content/company";
 
 export default function Home() {
   return (
@@ -65,13 +72,9 @@ export default function Home() {
             </span>
           </h2>
           <div className="perspective-bottom">
-            <p>
-              Contabilidade faz mais sentido quando ajuda a enxergar. Organizar
-              o presente. Entender o contexto. Abrir caminho para decisões
-              melhores.
-            </p>
+            <p>{company.description}</p>
             <Link className="text-link" href="/sobre-nos">
-              Conheça o conceito{" "}
+              Conheça a Player
             </Link>
           </div>
         </div>
@@ -146,6 +149,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <Advantages />
+      <Testimonials />
+      <OperationalBenefits />
+      <AppShowcase />
       <OfficeStory />
       <section className="next-chapter">
         <div className="container next-chapter-inner">

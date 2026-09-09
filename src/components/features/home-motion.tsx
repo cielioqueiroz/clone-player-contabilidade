@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { createSectionScenes } from "./scroll-scenes";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +25,7 @@ export function HomeMotion({ children }: { children: ReactNode }) {
         if (!context.conditions?.motion) return;
         const desktop = context.conditions.desktop;
         const select = gsap.utils.selector(root);
+        createSectionScenes(root, !desktop);
         const hero = select(".hero-sequence")[0];
         gsap.from(select(".hero-line"), {
           y: 65,

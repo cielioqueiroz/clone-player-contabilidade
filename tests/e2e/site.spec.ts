@@ -169,7 +169,13 @@ test("key pages meet automated accessibility checks and fit the viewport", async
 }) => {
   const runtimeErrors: string[] = [];
   page.on("pageerror", (error) => runtimeErrors.push(error.message));
-  for (const route of ["/", "/solucoes", "/simulador"]) {
+  for (const route of [
+    "/",
+    "/solucoes",
+    "/simulador",
+    "/sobre-nos",
+    "/contato",
+  ]) {
     await page.goto(route);
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
@@ -183,6 +189,105 @@ test("key pages meet automated accessibility checks and fit the viewport", async
     ).toBe(true);
   }
   expect(runtimeErrors).toEqual([]);
+});
+
+test("inner-page scroll scenes survive navigation and can be paused", async ({
+  page,
+}) => {
+  await page.goto("/solucoes");
+  await expect(page.locator(".route-motion")).toHaveAttribute(
+    "data-motion",
+    "ready",
+  );
+  const art = page.locator(".intro-orbit");
+  const initial = await art.evaluate((el) => getComputedStyle(el).transform);
+  await page.evaluate(() => window.scrollTo({ top: 350, behavior: "instant" }));
+  await expect
+    .poll(() => art.evaluate((el) => getComputedStyle(el).transform))
+    .not.toBe(initial);
+  await page.getByRole("button", { name: "Pausar movimento" }).click();
+  await expect(art).toHaveCSS("transform", "none");
+  await page.getByRole("button", { name: "Ativar movimento" }).click();
+  await page
+    .getByRole("link", { name: "Explorar solução", exact: true })
+    .first()
+    .click();
+  await expect(page).toHaveURL(/solucoes\/bpo-financeiro$/);
+  await expect(page.locator(".route-motion")).toHaveAttribute(
+    "data-motion",
+    "ready",
+  );
+  await expect(page.locator(".motion-toggle")).toHaveCount(1);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator(".intro-orbit")).toHaveCSS("transform", "none");
+  await expect(page.locator(".motion-toggle")).toBeHidden();
+});
+
+test("official identity and the complete institutional chapters are available", async ({
+  page,
+}) => {
+  await page.goto("/sobre-nos");
+  const logo = page.locator("header .player-logo");
+  await expect(logo).toHaveAttribute(
+    "src",
+    "/images/official/logo-principal.png",
+  );
+  await expect
+    .poll(() => logo.evaluate((el) => (el as HTMLImageElement).naturalWidth))
+    .toBe(225);
+  await expect(page.locator(".principles-grid article")).toHaveCount(3);
+  await expect(page.locator(".structure-gallery figure")).toHaveCount(6);
+  await expect(page.locator(".credentials-grid article")).toHaveCount(9);
+  await expect(page.locator(".testimonial-card")).toHaveCount(3);
+  await page
+    .locator(".structure-gallery figure")
+    .first()
+    .scrollIntoViewIfNeeded();
+  await expect
+    .poll(() =>
+      page
+        .locator(".structure-gallery img")
+        .first()
+        .evaluate((el) => (el as HTMLImageElement).naturalWidth),
+    )
+    .toBeGreaterThan(0);
+  await page.goto("/solucoes");
+  await expect(
+    page.getByRole("link", { name: "Google Play", exact: true }),
+  ).toHaveAttribute(
+    "href",
+    "https://play.google.com/store/apps/details?id=com.grupoconnectcontabilidade",
+  );
+  await expect(page.locator(".operation-scene")).toHaveCount(3);
+  await expect(page.locator(".app-phone")).toBeAttached();
+});
+
+test("expanded pages fit all required widths with motion enabled", async ({
+  page,
+}) => {
+  for (const route of [
+    "/solucoes",
+    "/sobre-nos",
+    "/especialidades",
+    "/contato",
+  ]) {
+    await page.goto(route);
+    for (const width of [360, 390, 768, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await expect
+        .poll(
+          () =>
+            page.evaluate(
+              (expectedWidth) =>
+                document.documentElement.scrollWidth <= expectedWidth &&
+                innerWidth === expectedWidth,
+              width,
+            ),
+          `${route} ${width}`,
+        )
+        .toBe(true);
+    }
+  }
 });
 
 test("content and native navigation work without JavaScript", async ({

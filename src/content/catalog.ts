@@ -13,8 +13,9 @@ export const services: readonly Service[] = [
       "Uma operação financeira organizada para enxergar o próximo passo.",
     items: [
       "Organização de contas a pagar e receber",
-      "Visibilidade do fluxo de caixa",
-      "Rotinas financeiras e integração de sistemas",
+      "Processamento da folha de pagamento",
+      "Rotinas de tesouraria e fluxo de caixa",
+      "Implantação e integração de sistemas financeiros",
     ],
   },
   {
@@ -35,7 +36,9 @@ export const services: readonly Service[] = [
     items: [
       "Jornada de abertura e encerramento",
       "Organização cadastral e documentação",
-      "Certificação digital e propriedade de marca",
+      "Certificação digital",
+      "Marcas e patentes",
+      "Revisão tributária do cadastro de produtos",
     ],
   },
   {
@@ -44,9 +47,9 @@ export const services: readonly Service[] = [
     description:
       "Conhecimento aplicado à rotina de quem faz a empresa acontecer.",
     items: [
-      "Educação financeira para equipes",
+      "Formação corporativa e educação financeira para equipes",
       "Práticas de compliance e ética",
-      "Atualização de processos e gestão",
+      "Capacitação para inovação e atualização profissional",
     ],
   },
   {
@@ -56,8 +59,11 @@ export const services: readonly Service[] = [
       "Mais contexto para avaliar escolhas tributárias com responsabilidade.",
     items: [
       "Análise de regimes e cenários",
-      "Revisão de oportunidades e obrigações",
-      "Planejamento e acompanhamento especializado",
+      "Revisão de tributos pagos e possibilidades de recuperação",
+      "Consultoria fiscal e tributária",
+      "Auditoria fiscal e tributária",
+      "Avaliação de enquadramento em regimes especiais",
+      "Planejamento financeiro e orçamento",
     ],
   },
 ];

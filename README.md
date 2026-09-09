@@ -22,6 +22,9 @@ The concept combines a complete navigation foundation with a scroll-led editoria
 
 - Original graphite-and-amber design system, Archivo and Manrope self-hosted variable fonts, and responsive editorial layouts.
 - GSAP/ScrollTrigger choreography for the portal, opposing text movement, image framing and geometric sector illustrations, with pause and reduced-motion support.
+- Scroll scenes across internal pages, a moving app illustration, operational benefit chapters and a parallax institutional gallery.
+- Official company logo, source-attributed institutional content, mission/vision/values, six gallery photos and nine company-presented seals. [Content coverage and deliberate differences](docs/SOURCE-PARITY.md).
+- Three original testimonial posters linking to company-hosted videos, verified app-store destinations and the published client portal.
 - Five service categories with individual pages and explicit reference links to the original company's WhatsApp.
 - Two specialty pages, About, Contact, Privacy, Accessibility, and a real 404 page.
 - A local scenario explorer: no account, lead submission, personal-data storage, or tax calculations.

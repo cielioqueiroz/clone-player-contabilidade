@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { navigation } from "@/content/catalog";
+import { PlayerLogo } from "@/components/ui/player-logo";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -23,8 +24,7 @@ export function SiteHeader() {
           href="/"
           aria-label="Player conceito — início"
         >
-          player
-          <span className="wordmark-caption">CONCEITO INDEPENDENTE</span>
+          <PlayerLogo />
         </Link>
         <nav className="desktop-nav" aria-label="Navegação principal">
           {navigation.map((link) => (

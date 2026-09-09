@@ -1,9 +1,14 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 export const alt =
   "Player conceito — Seu próximo movimento. Mais claro. Projeto de Ciélio Queiroz.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const logo = await readFile(
+    join(process.cwd(), "public/images/official/logo-principal.png"),
+  );
   return new ImageResponse(
     (
       <div
@@ -26,9 +31,14 @@ export default function OpenGraphImage() {
             fontSize: 28,
           }}
         >
-          <span style={{ color: "#F7B54A", fontSize: 46, fontWeight: 700 }}>
-            player
-          </span>
+          {/* Satori renders embedded raster data without browser image loading. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`data:image/png;base64,${logo.toString("base64")}`}
+            width={225}
+            height={75}
+            alt="Player Contabilidade"
+          />
           <span style={{ color: "#B8BBAF", fontSize: 18 }}>
             DESIGN & TECNOLOGIA
           </span>

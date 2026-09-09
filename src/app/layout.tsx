@@ -5,6 +5,8 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { site } from "@/content/catalog";
 import "./globals.css";
 import "./editorial.css";
+import "./company.css";
+import { PageMotion } from "@/components/features/page-motion";
 
 const display = localFont({
   src: "../../node_modules/@fontsource-variable/archivo/files/archivo-latin-standard-normal.woff2",
@@ -56,7 +58,7 @@ export default function RootLayout({
         </div>
         <SiteHeader />
         <main id="main-content" tabIndex={-1}>
-          {children}
+          <PageMotion>{children}</PageMotion>
         </main>
         <SiteFooter />
       </body>

@@ -15,6 +15,7 @@ export default function Accessibility() {
         <li>Navegação por teclado e foco visível.</li>
         <li>Hierarquia de títulos, campos rotulados e links descritivos.</li>
         <li>Respeito à preferência de redução de movimento do dispositivo.</li>
+        <li>Controle para pausar os efeitos de rolagem na página atual.</li>
         <li>Conteúdo principal legível sem depender de animações.</li>
       </ul>
       <h2>Compromisso de melhoria</h2>
