@@ -27,6 +27,9 @@ export default function Home() {
               <p className="hero-kicker">
                 Contabilidade. Com outra perspectiva.
               </p>
+              <p className="hero-belief">
+                Somos cientistas da riqueza e da prosperidade
+              </p>
               <h1>
                 <span className="hero-line">Seu negócio.</span>
                 <span className="hero-line">Em outra</span>

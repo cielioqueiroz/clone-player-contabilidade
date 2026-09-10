@@ -30,9 +30,11 @@ export default function Privacy() {
       </p>
       <h2>Links externos</h2>
       <p>
-        Ao abrir Instagram, WhatsApp ou o site original, você passa a utilizar
-        serviços de terceiros sujeitos às respectivas políticas. Nenhuma
-        mensagem é enviada automaticamente.
+        Ao abrir Instagram, Facebook, LinkedIn, WhatsApp, Google Maps ou o site
+        original, você passa a utilizar serviços de terceiros sujeitos às
+        respectivas políticas. Nenhuma mensagem é enviada automaticamente. O
+        mapa incorporado só é conectado ao Google depois que você escolhe
+        “Carregar mapa”.
       </p>
       <h2>Medição</h2>
       <p>

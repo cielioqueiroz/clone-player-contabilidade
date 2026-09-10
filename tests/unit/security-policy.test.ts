@@ -10,6 +10,8 @@ test("production denies inline script execution and rejects policy injection", (
     .find((value) => value.startsWith("script-src "));
   assert.equal(directive, "script-src 'self'");
   assert.ok(policy.includes("script-src-attr 'none'"));
+  assert.ok(policy.includes("frame-src https://www.google.com"));
+  assert.ok(!policy.includes("frame-src *"));
   assert.throws(() =>
     contentSecurityPolicy({ scriptHashes: ["'; script-src *"] }),
   );

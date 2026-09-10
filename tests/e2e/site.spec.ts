@@ -242,6 +242,37 @@ test("office journey pins on desktop and stays static on mobile", async ({
     .not.toBe("0");
 });
 
+test("opening statement, company badges, social channels and map are available", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(
+    page.getByText("Somos cientistas da riqueza e da prosperidade", {
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.locator(".footer-badge")).toHaveCount(9);
+  await expect(
+    page.getByRole("link", { name: "Instagram da Player Contabilidade" }),
+  ).toHaveAttribute("href", "https://www.instagram.com/playercontabilidade/");
+  await expect(
+    page.getByRole("link", { name: "Facebook da Player Contabilidade" }),
+  ).toHaveAttribute("href", "https://www.facebook.com/playercontabilidade/");
+  await expect(
+    page.getByRole("link", { name: "LinkedIn da Player Contabilidade" }),
+  ).toHaveAttribute(
+    "href",
+    "https://www.linkedin.com/company/player-contabilidade/",
+  );
+  await expect(
+    page.getByRole("link", { name: "WhatsApp da Player Contabilidade" }),
+  ).toHaveAttribute("href", /^https:\/\/wa\.me\/5511994453204\?/);
+  await page.getByRole("button", { name: "Carregar mapa" }).click();
+  await expect(
+    page.getByTitle("Localização da sede da Player Contabilidade em Palmas"),
+  ).toHaveAttribute("src", /google\.com\/maps\?q=-10\.3037758/);
+});
+
 test("home fits required widths and reduced motion removes the scroll scene", async ({
   page,
 }) => {

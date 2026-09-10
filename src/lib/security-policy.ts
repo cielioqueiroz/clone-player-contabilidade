@@ -19,7 +19,7 @@ export function contentSecurityPolicy({
     "connect-src 'self'",
     "object-src 'none'",
     "base-uri 'none'",
-    "frame-src 'none'",
+    "frame-src https://www.google.com",
     "frame-ancestors 'none'",
     "form-action 'self'",
     ...(!development ? ["upgrade-insecure-requests"] : []),

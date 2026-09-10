@@ -91,7 +91,7 @@ export function OfficeJourney() {
               scrollTrigger: {
                 trigger: scope,
                 start: "top top",
-                end: "+=2600",
+                end: "+=3600",
                 scrub: 0.8,
                 pin: stage,
                 anticipatePin: 1,
@@ -99,20 +99,48 @@ export function OfficeJourney() {
               },
             });
 
-            timeline.to(frameElements[0], { scale: 1.14, yPercent: -4 }, 0);
+            timeline.to(
+              frameElements[0],
+              { scale: 1.14, yPercent: -4, duration: 1.15 },
+              0,
+            );
             frameElements.slice(1).forEach((frame, index) => {
               const previousFrame = frameElements[index];
               const previousCopy = copyElements[index];
               const copy = copyElements[index + 1];
-              const start = 0.17 + index * 0.2;
+              const start = 1 + index * 1.45;
               timeline
-                .to(previousFrame, { autoAlpha: 0, scale: 1.18 }, start)
-                .to(previousCopy, { autoAlpha: 0, yPercent: -12 }, start)
-                .to(frame, { autoAlpha: 1, scale: 1.05 }, start + 0.03)
-                .to(copy, { autoAlpha: 1, yPercent: 0 }, start + 0.07)
-                .to(frame, { scale: 1.13, yPercent: -3 }, start + 0.1);
+                .to(
+                  previousCopy,
+                  { autoAlpha: 0, yPercent: -8, duration: 0.2 },
+                  start,
+                )
+                .to(
+                  previousFrame,
+                  { autoAlpha: 0, scale: 1.18, duration: 0.38 },
+                  start + 0.08,
+                )
+                .to(
+                  frame,
+                  { autoAlpha: 1, scale: 1.08, yPercent: -1, duration: 0.48 },
+                  start + 0.25,
+                )
+                .to(
+                  copy,
+                  { autoAlpha: 1, yPercent: 0, duration: 0.24 },
+                  start + 0.68,
+                )
+                .to(
+                  frame,
+                  { scale: 1.13, yPercent: -3, duration: 0.9 },
+                  start + 0.72,
+                );
             });
-            timeline.to(stage, { borderRadius: "0px", scale: 1 }, 0.98);
+            timeline.to(
+              stage,
+              { borderRadius: "0px", scale: 1, duration: 0.3 },
+              6.8,
+            );
           }, scope);
 
           return () => animationContext.revert();
