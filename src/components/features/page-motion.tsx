@@ -24,6 +24,15 @@ export function PageMotion({ children }: { children: ReactNode }) {
     }
   }, [pathname]);
   useEffect(() => {
+    // Next's client transition can restore the previous offset after layout.
+    // Re-apply the top position on the next frame without touching hash links.
+    if (window.location.hash) return;
+    const frame = window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [pathname]);
+  useEffect(() => {
     if (!root.current || isHome || paused) return;
     const element = root.current;
     const media = gsap.matchMedia();

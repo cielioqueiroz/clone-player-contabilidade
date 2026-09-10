@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
-import { services, specialties } from "@/content/catalog";
+import { services, site, specialties } from "@/content/catalog";
 import { OfficeStory } from "@/components/sections/office-story";
 import { HeroArt } from "@/components/features/hero-art";
 import { HomeMotion } from "@/components/features/home-motion";
+import { OfficeJourney } from "@/components/features/office-journey";
 import {
   Advantages,
   OperationalBenefits,
@@ -49,6 +51,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <OfficeJourney />
       <section className="perspective-section" id="manifesto">
         <div className="container perspective-inner">
           <p className="section-intro">
@@ -146,6 +149,25 @@ export default function Home() {
                 </div>
               </Link>
             ))}
+          </div>
+          <div className="sector-reference">
+            <Image
+              src="/images/official/contadores-farmacia-profile.jpg"
+              alt="Marca do perfil público Contadores de Farmácia no Instagram"
+              width={96}
+              height={96}
+            />
+            <div>
+              <p>Conteúdo especializado</p>
+              <h3>Farmácias pedem uma leitura própria.</h3>
+            </div>
+            <a
+              href={site.pharmacyInstagram}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver referência no Instagram
+            </a>
           </div>
         </div>
       </section>

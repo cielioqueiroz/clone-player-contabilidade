@@ -1,5 +1,9 @@
 # Delivery status
 
+Updated: 2026-09-10. Added a premium enterprise visual layer for the home, including a desktop-only office journey between the hero and manifesto. Five public-source frames transition through a pinned GSAP ScrollTrigger scene with scrub, zoom, crossfade and synchronized copy. Mobile and reduced-motion paths use static content without the new timeline; no Lenis, Canvas or Three.js was added. A verified aerial image was not available, so the opening frame is presented as institutional context rather than an aerial claim.
+
+The scene lives in `src/components/features/office-journey.tsx`, with the visual system in `src/app/premium.css`, responsive composition in `src/app/editorial.css` and browser regressions in `tests/e2e/site.spec.ts`. The hero now includes a public headquarters facade reference, the specialties section links to the requested `@contadoresdefarmacia` profile, and the supplied Google Maps imagery is locally optimized with provenance in `ASSETS.md`. `npm run check` and `npm run build` pass; the complete desktop/mobile browser suite passes all 30 tests against a clean production server. `npm test` remains 5/6 because the pre-existing security-hardening unit test expects an older `script-src` object shape; those security files remain outside this increment and untouched.
+
 Updated: 2026-09-09. Stage: smaller display typography and route scroll reset published and verified in production. Security controls reviewed with production evidence.
 
 ## Typography, navigation and security review

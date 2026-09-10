@@ -4,7 +4,7 @@
 
 The user confirmed the Google Maps location as the current company address: **Av. Siqueira Campos, Jardim Aureny III (Taquaralto), Palmas–TO**. Map entity: https://www.google.com/maps?cid=175021512181408638. This is derived from the supplied Maps place identifier, not from the former website addresses. Do not infer a street number or postal code.
 
-Observed Maps photos attributed to Player Contabilidade, dated June 2026: golden facade with reflective glazing; a meeting room with a long wood table and vertical wall panels. Low-resolution reference copies are kept locally outside the public source. Map imagery/tiles and platform branding are not website assets.
+Observed Maps photos attributed to Player Contabilidade, dated June 2026: wide and close facade views, meeting rooms, open work areas and training spaces. The user supplied direct public Maps photo links for this increment; selected image copies are stored locally under `public/images/official/player-maps-*`. Map imagery/tiles and platform branding are not website assets.
 
 ## Instagram photos selected for the concept
 
@@ -23,7 +23,18 @@ Use Next Image responsive optimization, lazy loading, explicit aspect ratio and 
 
 - First release: user-controlled crossfade between the room and people; visible buttons, preserved image framing, no autoplay.
 - Future scroll story: short crossfade with a static fallback and keyboard equivalent; never morph faces or fabricate architectural details.
+- Desktop office journey: five local frames move from a wide exterior context to the facade, work area, meeting table and team. The scene uses GSAP pin/scrub and remains static on mobile. The opening frame is a wide ground-level view, not an aerial image.
 - Facade: suitable for a restrained vertical reveal, but request the original full-resolution company photo before using the small Maps preview as a prominent website image.
+
+## Pharmacy Instagram reference
+
+Source: `https://www.instagram.com/contadoresdefarmacia/`, public profile
+identified as Player Contabilidade's pharmacy-focused unit. The local
+`contadores-farmacia-profile.jpg` is the public profile image used as a small,
+credited reference mark in the Home specialties section. Posts are not mirrored;
+the interface links to the profile for the visitor's own action. Inclusion in
+this independent demonstration does not establish affiliation or a reuse
+license beyond the user's request.
 
 ## Identity and sharing
 

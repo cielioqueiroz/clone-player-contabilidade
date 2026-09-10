@@ -1,6 +1,16 @@
+import Image from "next/image";
+
 export function HeroArt() {
   return (
     <div className="hero-art hero-brand-art" aria-hidden="true">
+      <Image
+        className="hero-facade"
+        src="/images/official/player-maps-view.jpg"
+        alt=""
+        fill
+        priority
+        sizes="(max-width: 800px) 100vw, 55vw"
+      />
       <div className="portal-halo" />
       <div className="portal-tilt">
         <svg

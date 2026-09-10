@@ -99,6 +99,7 @@ export const site = {
     "Um estudo independente de design e tecnologia para uma contabilidade mais clara. Projeto de demonstração de Ciélio Queiroz.",
   original: "https://playercontabilidade.com/",
   instagram: "https://www.instagram.com/playercontabilidade/",
+  pharmacyInstagram: "https://www.instagram.com/contadoresdefarmacia/",
   maps: "https://www.google.com/maps?cid=175021512181408638",
   address: "Av. Siqueira Campos, Jardim Aureny III (Taquaralto), Palmas–TO",
 };

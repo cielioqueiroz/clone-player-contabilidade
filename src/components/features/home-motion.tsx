@@ -18,12 +18,11 @@ export function HomeMotion({ children }: { children: ReactNode }) {
     media.add(
       {
         desktop: "(min-width: 801px)",
-        mobile: "(max-width: 800px)",
         motion: "(prefers-reduced-motion: no-preference)",
       },
       (context) => {
-        if (!context.conditions?.motion) return;
-        const desktop = context.conditions.desktop;
+        if (!context.conditions?.desktop || !context.conditions.motion) return;
+        const desktop = true;
         const select = gsap.utils.selector(root);
         createSectionScenes(root, !desktop);
         const hero = select(".hero-sequence")[0];

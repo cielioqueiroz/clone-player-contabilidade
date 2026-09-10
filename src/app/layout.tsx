@@ -6,6 +6,7 @@ import { site } from "@/content/catalog";
 import "./globals.css";
 import "./editorial.css";
 import "./company.css";
+import "./premium.css";
 import { PageMotion } from "@/components/features/page-motion";
 
 const display = localFont({

@@ -158,8 +158,20 @@ test("headquarters story follows a short scroll sequence", async ({ page }) => {
 
 test("scroll transforms the hero and pause restores a static composition", async ({
   page,
+  isMobile,
 }) => {
   await page.goto("/");
+  if (isMobile) {
+    await expect(page.locator(".cinematic-home")).not.toHaveAttribute(
+      "data-motion",
+      "ready",
+    );
+    await expect(page.locator(".hero-stage")).toHaveCSS(
+      "position",
+      "relative",
+    );
+    return;
+  }
   await expect(page.locator(".cinematic-home")).toHaveAttribute(
     "data-motion",
     "ready",
@@ -194,6 +206,43 @@ test("scroll transforms the hero and pause restores a static composition", async
     "data-motion",
     "ready",
   );
+});
+
+test("office journey pins on desktop and stays static on mobile", async ({
+  page,
+  isMobile,
+}) => {
+  await page.goto("/");
+  if (isMobile) {
+    await expect(page.locator(".office-journey-stage")).toBeHidden();
+    await expect(page.locator(".journey-mobile-content")).toBeVisible();
+    await expect(page.locator(".journey-mobile-grid figure")).toHaveCount(2);
+    return;
+  }
+
+  const journey = page.locator(".office-journey");
+  const stage = page.locator(".office-journey-stage");
+  await journey.scrollIntoViewIfNeeded();
+  await page.evaluate(() => window.scrollBy({ top: 500, behavior: "instant" }));
+  await expect
+    .poll(() => stage.evaluate((element) => getComputedStyle(element).position))
+    .toBe("fixed");
+  await page.evaluate(() => {
+    const journey = document.querySelector<HTMLElement>(".office-journey");
+    if (journey)
+      window.scrollTo({
+        top: journey.getBoundingClientRect().top + scrollY + 1600,
+        behavior: "instant",
+      });
+  });
+  await expect
+    .poll(() =>
+      page
+        .locator(".journey-frame")
+        .nth(2)
+        .evaluate((element) => getComputedStyle(element).opacity),
+    )
+    .not.toBe("0");
 });
 
 test("home fits required widths and reduced motion removes the scroll scene", async ({
