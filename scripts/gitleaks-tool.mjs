@@ -50,6 +50,10 @@ export async function prepareGitleaks() {
     throw new Error("Cached scanner archive checksum mismatch.");
   const directory = await mkdtemp(join(tmpdir(), "player-gitleaks-exec-"));
   const executable = process.platform === "win32" ? "gitleaks.exe" : "gitleaks";
-  execFileSync("tar", ["-xf", archive, "-C", directory, executable]);
+  const tar =
+    process.platform === "win32"
+      ? join(process.env.SystemRoot ?? "C:\\Windows", "System32", "tar.exe")
+      : "tar";
+  execFileSync(tar, ["-xf", archive, "-C", directory, executable]);
   return { executable: join(directory, executable), directory };
 }

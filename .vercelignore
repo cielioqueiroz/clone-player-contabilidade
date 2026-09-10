@@ -3,7 +3,8 @@
 .agents
 docs
 tests
-scripts
+scripts/*
+!scripts/finalize-csp.mjs
 README.md
 AGENTS.md
 playwright-report
