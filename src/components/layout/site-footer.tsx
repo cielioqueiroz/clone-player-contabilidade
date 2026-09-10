@@ -42,11 +42,9 @@ export function SiteFooter() {
           </div>
           <div>
             <h2>Atendimento da empresa</h2>
-            <a href={company.support} target="_blank" rel="noopener noreferrer">
-              SAC
-            </a>
-            <a href={company.support} target="_blank" rel="noopener noreferrer">
-              Canal de denúncias
+            <a href={company.supportPhone}>SAC — ligar para 0800</a>
+            <a href={company.supportPhone}>
+              Canal de denúncias — ligar para 0800
             </a>
             <p>Os canais externos pertencem à empresa original.</p>
           </div>

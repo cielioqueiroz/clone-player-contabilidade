@@ -166,10 +166,7 @@ test("scroll transforms the hero and pause restores a static composition", async
       "data-motion",
       "ready",
     );
-    await expect(page.locator(".hero-stage")).toHaveCSS(
-      "position",
-      "relative",
-    );
+    await expect(page.locator(".hero-stage")).toHaveCSS("position", "relative");
     return;
   }
   await expect(page.locator(".cinematic-home")).toHaveAttribute(
@@ -296,8 +293,18 @@ test("key pages meet automated accessibility checks and fit the viewport", async
 
 test("inner-page scroll scenes survive navigation and can be paused", async ({
   page,
+  isMobile,
 }) => {
   await page.goto("/solucoes");
+  if (isMobile) {
+    await expect(page.locator(".route-motion")).not.toHaveAttribute(
+      "data-motion",
+      "ready",
+    );
+    await expect(page.locator(".motion-toggle")).toBeHidden();
+    await expect(page.locator(".intro-orbit")).toHaveCSS("transform", "none");
+    return;
+  }
   await expect(page.locator(".route-motion")).toHaveAttribute(
     "data-motion",
     "ready",
@@ -331,13 +338,10 @@ test("official identity and the complete institutional chapters are available", 
 }) => {
   await page.goto("/sobre-nos");
   const logo = page.locator("header .player-logo");
-  await expect(logo).toHaveAttribute(
-    "src",
-    "/images/official/logo-principal.png",
-  );
+  await expect(logo).toHaveAttribute("src", /logo-principal\.png/);
   await expect
     .poll(() => logo.evaluate((el) => (el as HTMLImageElement).naturalWidth))
-    .toBe(225);
+    .toBeGreaterThan(0);
   await expect(page.locator(".principles-grid article")).toHaveCount(3);
   await expect(page.locator(".structure-gallery figure")).toHaveCount(6);
   await expect(page.locator(".credentials-grid article")).toHaveCount(9);
@@ -434,6 +438,11 @@ test("sharing assets, noindex and security headers are present", async ({
   await expect(
     page.locator('meta[property="og:image"]').first(),
   ).toHaveAttribute("content", /opengraph-image/);
+  await page.goto("/contato");
+  expect(
+    await page.locator('a[href="tel:08008001385"]').count(),
+  ).toBeGreaterThan(0);
+  await expect(page.locator('a[href^="https://wa.me/0800"]')).toHaveCount(0);
   await page.keyboard.press("Tab");
   await expect(
     page.getByRole("link", { name: "Pular para o conteúdo" }),

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { getRecommendation, priorities } from "../../src/lib/diagnosis.ts";
 import { companyWhatsAppUrl } from "../../src/lib/reference-links.ts";
 import { services } from "../../src/content/catalog.ts";
+import { company } from "../../src/content/company.ts";
 
 test("every supported priority links to an implemented service", () => {
   const available = new Set(
@@ -23,4 +24,7 @@ test("contact URL uses a fixed destination and transparent demo context", () => 
   assert.equal(url.origin, "https://wa.me");
   assert.equal(url.pathname, "/5511994453204");
   assert.match(url.searchParams.get("text") ?? "", /demonstrativo/);
+});
+test("toll-free support remains a telephone link rather than an invalid WhatsApp URL", () => {
+  assert.equal(company.supportPhone, "tel:08008001385");
 });

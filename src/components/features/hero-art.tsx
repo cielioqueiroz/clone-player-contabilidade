@@ -8,8 +8,9 @@ export function HeroArt() {
         src="/images/official/player-maps-view.jpg"
         alt=""
         fill
-        priority
+        preload
         sizes="(max-width: 800px) 100vw, 55vw"
+        quality={68}
       />
       <div className="portal-halo" />
       <div className="portal-tilt">
@@ -82,16 +83,21 @@ export function HeroArt() {
             <div className={`brand-fragment fragment-${index}`} key={path}>
               <svg viewBox="128 32 270 270">
                 <defs>
-                  <clipPath id={`brand-piece-${index}`}>
-                    <path d={path} />
-                  </clipPath>
+                  <linearGradient
+                    id={`brand-piece-${index}`}
+                    x1="140"
+                    y1="40"
+                    x2="370"
+                    y2="280"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stopColor="#fff2c2" />
+                    <stop offset=".34" stopColor="#ffad3f" />
+                    <stop offset=".72" stopColor="#9d4d14" />
+                    <stop offset="1" stopColor="#ffd48a" />
+                  </linearGradient>
                 </defs>
-                <image
-                  href="/images/official/player-emblem-source.webp"
-                  width="512"
-                  height="512"
-                  clipPath={`url(#brand-piece-${index})`}
-                />
+                <path d={path} fill={`url(#brand-piece-${index})`} />
               </svg>
             </div>
           ))}

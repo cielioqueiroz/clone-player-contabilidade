@@ -2,10 +2,6 @@
 
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const journeyFrames = [
   {
@@ -50,81 +46,104 @@ export function OfficeJourney() {
 
   useLayoutEffect(() => {
     if (!root.current) return;
+    if (
+      !window.matchMedia("(min-width: 801px)").matches ||
+      !window.matchMedia("(prefers-reduced-motion: no-preference)").matches
+    )
+      return;
 
-    const media = gsap.matchMedia();
-    media.add(
-      {
-        desktop: "(min-width: 801px)",
-        motion: "(prefers-reduced-motion: no-preference)",
-      },
-      (context) => {
-        if (!context.conditions?.desktop || !context.conditions.motion) return;
+    let cancelled = false;
+    let revert = () => {};
 
-        const scope = root.current;
-        if (!scope) return;
+    void import("./scroll-scenes").then(({ gsap }) => {
+      if (cancelled) return;
+      const media = gsap.matchMedia();
+      revert = () => media.revert();
+      media.add(
+        {
+          desktop: "(min-width: 801px)",
+          motion: "(prefers-reduced-motion: no-preference)",
+        },
+        (context) => {
+          if (!context.conditions?.desktop || !context.conditions.motion)
+            return;
 
-        const frameElements = Array.from(
-          scope.querySelectorAll<HTMLElement>(".journey-frame"),
-        );
-        const copyElements = Array.from(
-          scope.querySelectorAll<HTMLElement>(".journey-copy"),
-        );
-        const stage = scope.querySelector<HTMLElement>(".office-journey-stage");
-        if (!stage || frameElements.length !== copyElements.length) return;
+          const scope = root.current;
+          if (!scope) return;
 
-        const animationContext = gsap.context(() => {
-          gsap.set(frameElements.slice(1), { autoAlpha: 0 });
-          gsap.set(copyElements.slice(1), { autoAlpha: 0, yPercent: 12 });
+          const frameElements = Array.from(
+            scope.querySelectorAll<HTMLElement>(".journey-frame"),
+          );
+          const copyElements = Array.from(
+            scope.querySelectorAll<HTMLElement>(".journey-copy"),
+          );
+          const stage = scope.querySelector<HTMLElement>(
+            ".office-journey-stage",
+          );
+          if (!stage || frameElements.length !== copyElements.length) return;
 
-          const timeline = gsap.timeline({
-            defaults: { ease: "none" },
-            scrollTrigger: {
-              trigger: scope,
-              start: "top top",
-              end: "+=2600",
-              scrub: 0.8,
-              pin: stage,
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-            },
-          });
+          const animationContext = gsap.context(() => {
+            gsap.set(frameElements.slice(1), { autoAlpha: 0 });
+            gsap.set(copyElements.slice(1), { autoAlpha: 0, yPercent: 12 });
 
-          timeline.to(frameElements[0], { scale: 1.14, yPercent: -4 }, 0);
-          frameElements.slice(1).forEach((frame, index) => {
-            const previousFrame = frameElements[index];
-            const previousCopy = copyElements[index];
-            const copy = copyElements[index + 1];
-            const start = 0.17 + index * 0.2;
-            timeline
-              .to(previousFrame, { autoAlpha: 0, scale: 1.18 }, start)
-              .to(previousCopy, { autoAlpha: 0, yPercent: -12 }, start)
-              .to(frame, { autoAlpha: 1, scale: 1.05 }, start + 0.03)
-              .to(copy, { autoAlpha: 1, yPercent: 0 }, start + 0.07)
-              .to(frame, { scale: 1.13, yPercent: -3 }, start + 0.1);
-          });
-          timeline.to(stage, { borderRadius: "0px", scale: 1 }, 0.98);
-        }, scope);
+            const timeline = gsap.timeline({
+              defaults: { ease: "none" },
+              scrollTrigger: {
+                trigger: scope,
+                start: "top top",
+                end: "+=2600",
+                scrub: 0.8,
+                pin: stage,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+              },
+            });
 
-        return () => animationContext.revert();
-      },
-      root,
-    );
+            timeline.to(frameElements[0], { scale: 1.14, yPercent: -4 }, 0);
+            frameElements.slice(1).forEach((frame, index) => {
+              const previousFrame = frameElements[index];
+              const previousCopy = copyElements[index];
+              const copy = copyElements[index + 1];
+              const start = 0.17 + index * 0.2;
+              timeline
+                .to(previousFrame, { autoAlpha: 0, scale: 1.18 }, start)
+                .to(previousCopy, { autoAlpha: 0, yPercent: -12 }, start)
+                .to(frame, { autoAlpha: 1, scale: 1.05 }, start + 0.03)
+                .to(copy, { autoAlpha: 1, yPercent: 0 }, start + 0.07)
+                .to(frame, { scale: 1.13, yPercent: -3 }, start + 0.1);
+            });
+            timeline.to(stage, { borderRadius: "0px", scale: 1 }, 0.98);
+          }, scope);
 
-    return () => media.revert();
+          return () => animationContext.revert();
+        },
+        root,
+      );
+    });
+
+    return () => {
+      cancelled = true;
+      revert();
+    };
   }, []);
 
   return (
-    <section className="office-journey" ref={root} aria-labelledby="journey-title">
+    <section
+      className="office-journey"
+      ref={root}
+      aria-labelledby="journey-title"
+    >
       <div className="office-journey-stage">
         <div className="journey-frame-stack" aria-hidden="true">
-          {journeyFrames.map((frame, index) => (
+          {journeyFrames.map((frame) => (
             <div className="journey-frame" key={frame.src}>
               <Image
                 src={frame.src}
                 alt=""
                 fill
                 sizes="100vw"
-                loading={index === 0 ? "eager" : "lazy"}
+                loading="lazy"
+                quality={72}
               />
             </div>
           ))}
@@ -157,19 +176,24 @@ export function OfficeJourney() {
           sequência estática para telas menores.
         </p>
         <div className="journey-mobile-grid">
-          {journeyFrames.filter((_, index) => index === 0 || index === journeyFrames.length - 1).map((frame) => (
-            <figure key={frame.src}>
-              <Image
-                src={frame.src}
-                alt={frame.alt}
-                width={1200}
-                height={1500}
-                sizes="(max-width: 800px) 90vw"
-                loading="lazy"
-              />
-              <figcaption>{frame.eyebrow}</figcaption>
-            </figure>
-          ))}
+          {journeyFrames
+            .filter(
+              (_, index) => index === 0 || index === journeyFrames.length - 1,
+            )
+            .map((frame) => (
+              <figure key={frame.src}>
+                <Image
+                  src={frame.src}
+                  alt={frame.alt}
+                  width={1200}
+                  height={1500}
+                  sizes="(max-width: 800px) calc(50vw - 30px), 1px"
+                  quality={68}
+                  loading="lazy"
+                />
+                <figcaption>{frame.eyebrow}</figcaption>
+              </figure>
+            ))}
         </div>
       </div>
       <p className="journey-credit container">

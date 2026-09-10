@@ -860,6 +860,9 @@ em {
   }
 }
 @media (max-width: 800px) {
+  .motion-toggle {
+    display: none;
+  }
   .header-inner,
   .site-header.is-scrolled .header-inner {
     height: 72px;

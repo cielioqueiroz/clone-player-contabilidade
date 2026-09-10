@@ -1,6 +1,6 @@
 export const company = {
   email: "bemvindo@playercontabilidade.com",
-  support: "https://wa.me/08008001385",
+  supportPhone: "tel:08008001385",
   cnpj: "47.799.371/0001-49",
   registrations: "CRC–TO 006691/O-7 · CRC–TO 000781/O-6 · CRA–TO 20-03828",
   appStore: "https://apps.apple.com/br/app/player-contabilidade/id1585413374",

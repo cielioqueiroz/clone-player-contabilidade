@@ -7,10 +7,6 @@ import {
   type ReactNode,
 } from "react";
 import { usePathname } from "next/navigation";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { createSectionScenes } from "./scroll-scenes";
-gsap.registerPlugin(ScrollTrigger);
 
 export function PageMotion({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -24,73 +20,101 @@ export function PageMotion({ children }: { children: ReactNode }) {
     }
   }, [pathname]);
   useEffect(() => {
-    // Next's client transition can restore the previous offset after layout.
-    // Re-apply the top position on the next frame without touching hash links.
+    // Next and ScrollTrigger can both restore the previous offset while the new
+    // route settles. Re-apply the top position through the first layout frames
+    // without touching native hash navigation.
     if (window.location.hash) return;
-    const frame = window.requestAnimationFrame(() => {
+    let secondFrame = 0;
+    const reset = () => {
+      if (window.location.hash) return;
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    };
+    const firstFrame = window.requestAnimationFrame(() => {
+      reset();
+      secondFrame = window.requestAnimationFrame(reset);
     });
-    return () => window.cancelAnimationFrame(frame);
+    return () => {
+      window.cancelAnimationFrame(firstFrame);
+      window.cancelAnimationFrame(secondFrame);
+    };
   }, [pathname]);
   useEffect(() => {
     if (!root.current || isHome || paused) return;
+    if (
+      !window.matchMedia("(min-width: 801px)").matches ||
+      !window.matchMedia("(prefers-reduced-motion: no-preference)").matches
+    )
+      return;
+
     const element = root.current;
-    const media = gsap.matchMedia();
-    media.add(
-      {
-        motion: "(prefers-reduced-motion: no-preference)",
-        mobile: "(max-width: 800px)",
-      },
-      (context) => {
-        if (!context.conditions?.motion) return;
-        const select = gsap.utils.selector(element);
-        gsap.from(select(".page-intro h1"), {
-          y: 45,
-          duration: 1,
-          ease: "power3.out",
-          clearProps: "transform",
-        });
-        select(".intro-orbit").forEach((art: HTMLElement) =>
-          gsap.to(art, {
-            rotation: 100,
-            scale: 1.25,
-            y: -75,
-            ease: "none",
-            scrollTrigger: {
-              trigger: art.parentElement,
-              start: "top top",
-              end: "bottom top",
-              scrub: 0.7,
-            },
-          }),
-        );
-        select(".service-card, .specialty-card, .detail-panel").forEach(
-          (card: HTMLElement) =>
-            gsap.from(card, {
+    let cancelled = false;
+    let revert = () => {};
+
+    void import("./scroll-scenes").then(
+      ({ createSectionScenes, gsap, ScrollTrigger }) => {
+        if (cancelled) return;
+        const media = gsap.matchMedia();
+        revert = () => media.revert();
+        media.add(
+          {
+            desktop: "(min-width: 801px)",
+            motion: "(prefers-reduced-motion: no-preference)",
+          },
+          (context) => {
+            if (!context.conditions?.motion) return;
+            const select = gsap.utils.selector(element);
+            gsap.from(select(".page-intro h1"), {
               y: 45,
-              duration: 0.8,
+              duration: 1,
               ease: "power3.out",
-              scrollTrigger: {
-                trigger: card,
-                start: "top 95%",
-                toggleActions: "play none none reverse",
-              },
-            }),
+              clearProps: "transform",
+            });
+            select(".intro-orbit").forEach((art: HTMLElement) =>
+              gsap.to(art, {
+                rotation: 100,
+                scale: 1.25,
+                y: -75,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: art.parentElement,
+                  start: "top top",
+                  end: "bottom top",
+                  scrub: 0.7,
+                },
+              }),
+            );
+            select(".service-card, .specialty-card, .detail-panel").forEach(
+              (card: HTMLElement) =>
+                gsap.from(card, {
+                  y: 45,
+                  duration: 0.8,
+                  ease: "power3.out",
+                  scrollTrigger: {
+                    trigger: card,
+                    start: "top 95%",
+                    toggleActions: "play none none reverse",
+                  },
+                }),
+            );
+            createSectionScenes(element, false);
+            element.dataset.motion = "ready";
+            let active = true;
+            void document.fonts.ready.then(() => {
+              if (active) ScrollTrigger.refresh();
+            });
+            return () => {
+              active = false;
+              delete element.dataset.motion;
+            };
+          },
+          element,
         );
-        createSectionScenes(element, Boolean(context.conditions.mobile));
-        element.dataset.motion = "ready";
-        let active = true;
-        void document.fonts.ready.then(() => {
-          if (active) ScrollTrigger.refresh();
-        });
-        return () => {
-          active = false;
-          delete element.dataset.motion;
-        };
       },
-      element,
     );
-    return () => media.revert();
+    return () => {
+      cancelled = true;
+      revert();
+    };
   }, [pathname, paused, isHome]);
   return (
     <div

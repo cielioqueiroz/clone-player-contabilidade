@@ -10,9 +10,9 @@ Observed Maps photos attributed to Player Contabilidade, dated June 2026: wide a
 
 Source: https://www.instagram.com/playercontabilidade/p/DcMkgyREfDB/ (public post, August 18, 2026). Two frames show the same premium meeting room, first empty, then occupied by the team. Materials: stone tabletop, leather chairs, wood, warm lighting and a branded screen. The publication contains baked-in text; preserve the complete image and do not erase text, faces or marks.
 
-| Local asset | Source frame | Dimensions | Usage |
-| --- | --- | --- | --- |
-| `public/images/player-meeting-room.jpg` | First image | 3277 × 4096 | Empty-room view in the headquarters story |
+| Local asset                             | Source frame | Dimensions  | Usage                                      |
+| --------------------------------------- | ------------ | ----------- | ------------------------------------------ |
+| `public/images/player-meeting-room.jpg` | First image  | 3277 × 4096 | Empty-room view in the headquarters story  |
 | `public/images/player-team-meeting.jpg` | Second image | 3277 × 4096 | Team-view toggle in the headquarters story |
 
 The user explicitly requested these company photos for the demonstration. They remain third-party company material; user authorization to include them is not an independently verified redistribution license. Credit the company and link to the original post. Do not grant rights to these photos under any software license or claim they are original project photography. Further commercial use or unrestricted redistribution needs rights review with the owner.
@@ -44,7 +44,7 @@ The same folder contains the six original institutional gallery JPEGs (3024 × 4
 
 `src/app/icon.svg` embeds the original 32 × 32 company favicon PNG, found in the official site's icon metadata at `https://playercontabilidade.com/assets/favicon-BgP-nxWn.png`, preserved locally as `public/images/official/player-symbol.png`. The SVG wrapper preserves the existing public favicon route. All decorative arrows were removed at the user's request; the official company mark is retained as supplied. `src/app/opengraph-image.tsx` generates a 1200 × 630 PNG with the official logo, original composition, the concept label and owner credit. Keep OG/title/description consistent with the non-official nature of the project. Verify absolute OG URLs on the final domain and both image endpoints before release.
 
-The hero decomposes the official emblem into three curved SVG clipping regions, each with independent scroll displacement and rotation. The underlying pixels are from the 512 × 512 Google Play artwork for the Player app linked by the company's own website: `https://play-lh.googleusercontent.com/VYG4sgL6mW0eviVcVBX3g8dSrPV5tmxph8cNqtP22Ra53vqYEvBpegDvuO6Cdg842r4kBNOMND5lCWulnoBb=w1024-h1024-rw`. The server returns a 512 × 512 WebP, saved unmodified as `public/images/official/player-emblem-source.webp`. SVG masks isolate the emblem from the store artwork; no logo generation, upscaling service or proprietary script is used. The complete header/footer logo is unchanged. Reduced motion and pause restore the assembled mark.
+The hero reinterprets the emblem silhouette as three lightweight SVG paths with an original amber gradient, each with independent desktop scroll displacement and rotation. It does not download the 512 × 512 store artwork on page load. The source artwork remains archived at `public/images/official/player-emblem-source.webp` for provenance, from the Google Play listing linked by the company's own website: `https://play-lh.googleusercontent.com/VYG4sgL6mW0eviVcVBX3g8dSrPV5tmxph8cNqtP22Ra53vqYEvBpegDvuO6Cdg842r4kBNOMND5lCWulnoBb=w1024-h1024-rw`. The complete header/footer logo is unchanged. Mobile, reduced motion and pause use a static composition.
 
 The metallic portal in `hero-art.tsx` and the sector geometry are original SVG/CSS compositions. Archivo Variable and Manrope Variable are self-hosted Latin WOFF2 files from Fontsource 5.3.0, licensed OFL-1.1; their notices remain in the dependency packages. No Instagram footage or third-party executable animation code is copied into the design.
 

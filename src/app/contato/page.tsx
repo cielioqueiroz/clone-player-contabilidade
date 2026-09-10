@@ -75,9 +75,9 @@ export default function Contact() {
             <span>Sede atual · Ver no mapa</span>
             <strong>{site.address}</strong>
           </a>
-          <a href={company.support} target="_blank" rel="noopener noreferrer">
-            <span>WhatsApp da empresa</span>
-            <strong>SAC e canal de denúncias</strong>
+          <a href={company.supportPhone}>
+            <span>SAC e canal de denúncias</span>
+            <strong>Ligar para 0800 800 1385</strong>
           </a>
         </div>
       </div>

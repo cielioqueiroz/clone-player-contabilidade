@@ -1,4 +1,9 @@
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export { gsap, ScrollTrigger };
 
 // Called inside a GSAP matchMedia context; the caller owns cleanup and pause.
 export function createSectionScenes(root: HTMLElement, mobile: boolean) {

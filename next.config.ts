@@ -1,22 +1,15 @@
 import type { NextConfig } from "next";
+import { contentSecurityPolicy } from "./src/lib/security-policy";
 
 const isDevelopment = process.env.NODE_ENV === "development";
-const csp = [
-  "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
-  "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
-  "font-src 'self'",
-  "connect-src 'self'",
-  "object-src 'none'",
-  "base-uri 'self'",
-  "frame-ancestors 'none'",
-  "form-action 'self'",
-  ...(isDevelopment ? [] : ["upgrade-insecure-requests"]),
-].join("; ");
+// Production hashes are derived from the exact prerendered HTML after build.
+const csp = contentSecurityPolicy({ development: isDevelopment });
 
 const config: NextConfig = {
   poweredByHeader: false,
+  images: {
+    qualities: [68, 72, 75, 85],
+  },
   async headers() {
     return [
       {

@@ -84,6 +84,7 @@ export function OfficeStory() {
               alt="Sala de reunião da Player com mesa de pedra, cadeiras e tela, antes da reunião."
               fill
               sizes="(max-width: 700px) 90vw, 480px"
+              quality={68}
               data-visible={!showTeam}
               aria-hidden={showTeam}
             />
@@ -92,6 +93,7 @@ export function OfficeStory() {
               alt="Equipe da Player reunida à mesa, com notebooks, na mesma sala."
               fill
               sizes="(max-width: 700px) 90vw, 480px"
+              quality={68}
               data-visible={showTeam}
               aria-hidden={!showTeam}
             />

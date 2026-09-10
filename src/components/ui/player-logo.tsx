@@ -8,7 +8,8 @@ export function PlayerLogo({ footer = false }: { footer?: boolean }) {
       alt="Player Contabilidade"
       width={225}
       height={75}
-      unoptimized
+      sizes="(max-width: 800px) 135px, 225px"
+      quality={85}
     />
   );
 }
