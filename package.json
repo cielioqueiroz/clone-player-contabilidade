@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node --experimental-strip-types scripts/finalize-csp.mjs",
+    "build": "node scripts/build-with-csp.mjs",
     "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write src tests scripts *.ts *.mjs package.json tsconfig.json .github",
